@@ -1,0 +1,54 @@
+@function strip-unit($number) {
+  @if (type-of($number) == 'number' and not unitless($number)) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@mixin smoothValue($prop, $min, $max, $minViewPort: 320px, $maxViewPort: 1920px) {
+  @media (min-width: $minViewPort) {
+    #{$prop}: $max;
+  }
+  @media (min-width: $minViewPort) and (max-width: $maxViewPort) {
+    #{$prop}: calc(
+            #{$min} + #{strip-unit($max - $min)} *
+            ((100vw - #{$minViewPort}) / (#{strip-unit($maxViewPort - $minViewPort)}))
+    );
+  }
+}
+
+@mixin minScreen($breakpoint) {
+  @media only screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin maxScreen($breakpoint) {
+  @media only screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin screen ($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin minVerticalScreen($breakpoint) {
+  @media only screen and (min-height: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin maxVerticalScreen($breakpoint) {
+  @media only screen and (max-height: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin verticalScreen ($min, $max) {
+  @media only screen and (min-height: $min) and (max-height: $max) {
+    @content;
+  }
+}

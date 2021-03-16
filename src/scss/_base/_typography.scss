@@ -1,0 +1,73 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--text-color);
+
+  @include minScreen(1440px) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.title {
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 700;
+
+  @include minScreen(1440px) {
+    font-size: 45px;
+    line-height: 50px;
+  }
+
+  &_main {
+    margin-top: auto;
+    margin-bottom: 8px;
+    text-align: center;
+
+    @include maxScreen(667px) {
+      padding: 0 52px 0 24px;
+      text-align: left;
+    }
+
+    @include minScreen(1440px) {
+      margin-bottom: 20px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.subtitle {
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 700;
+
+  @include minScreen(1440px) {
+    font-size: 30px;
+    line-height: 32px;
+  }
+
+  &_main {
+    text-align: center;
+
+    @include maxScreen(667px) {
+      padding: 0 52px 0 24px;
+      text-align: left;
+    }
+  }
+}
+
+.caption {
+  font-size: 14px;
+  line-height: 16px;
+
+  @include minScreen(1440px) {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+.pale {
+  color: var(--pale-color);
+}

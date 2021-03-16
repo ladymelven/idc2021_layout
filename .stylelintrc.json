@@ -1,0 +1,30 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
+  "rules": {
+    "color-hex-case": "upper",
+    "function-parentheses-space-inside": "never-single-line",
+    "number-leading-zero": "never",
+    "max-nesting-depth": 3,
+    "selector-max-id": 1,
+    "order/properties-alphabetical-order": false,
+    "order/properties-order": [
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "border",
+      "box-shadow",
+      "font",
+      "color",
+      "background-color",
+      "transition",
+      "cursor"
+    ],
+    "selector-class-pattern": "^[a-zA-Z0-9_-]*$",
+    "scss/percent-placeholder-pattern": "^[a-zA-Z0-9_-]*$",
+    "scss/at-function-pattern": "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?",
+    "scss/at-mixin-pattern": "[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?"
+  },
+  "ignore": ["selector-class-pattern", "declaration-colon-newline-after"]
+}

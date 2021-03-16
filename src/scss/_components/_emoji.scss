@@ -1,0 +1,14 @@
+.emoji {
+  position: absolute;
+  font-size: 26px;
+  line-height: 1;
+  z-index: 1;
+
+  @include minScreen(360px) {
+    font-size: 32px;
+  }
+
+  @include minScreen(1440px) {
+    font-size: 40px;
+  }
+}

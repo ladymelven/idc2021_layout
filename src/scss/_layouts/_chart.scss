@@ -1,0 +1,165 @@
+.chart {
+  flex-grow: 1;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 24px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow: hidden;
+
+  @include minScreen(360px) {
+    padding: 24px;
+  }
+
+  @include minScreen(481px) {
+    width: auto;
+    align-items: stretch;
+    padding: 24px 58px;
+    max-height: 500px;
+  }
+
+  @include minScreen(1024px) {
+    max-height: 700px;
+  }
+
+  &__chart {
+    flex-grow: 1;
+    margin-bottom: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @include minScreen(1024px) {
+      min-width: 90vw;
+      margin-bottom: 66px;
+    }
+
+    @include minScreen(1440px) {
+      margin-bottom: 76px;
+    }
+  }
+
+  &__unit {
+    position: relative;
+    text-align: center;
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+
+  &__number {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include minScreen(1440px) {
+      top: -50px;
+    }
+  }
+
+  &__bar {
+    width: 40px;
+    min-height: 8px;
+    max-height: 70%;
+    border-radius: 6px;
+    box-shadow: var(--shadow-base-bar);
+    background: var(--base-bar);
+
+    @include minScreen(1024px) {
+      width: 50px;
+    }
+
+    @include minScreen(1366px) {
+      width: 60px;
+    }
+
+    @include minScreen(1920px) {
+      width: 70px;
+    }
+
+    &_current {
+      box-shadow: var(--shadow-bright-bar);
+      background: var(--bright-bar);
+    }
+  }
+
+  &__legend {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+
+    @include minScreen(1440px) {
+      bottom: -36px;
+    }
+  }
+
+  &__leaders {
+    width: 100%;
+
+    @include minScreen(481px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__leader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @include minScreen(481px) {
+      width: 220px;
+    }
+
+    @include minScreen(1440px) {
+      width: 250px;
+    }
+
+    @include minScreen(1920px) {
+      width: 280px;
+    }
+
+    &:not(:last-child) {
+      padding-right: 0;
+      padding-bottom: 16px;
+      margin-right: 0;
+      margin-bottom: 16px;
+      border-right: none;
+      border-bottom: 1px solid var(--pale-color);
+
+      @include minScreen(480px) {
+        box-sizing: content-box;
+        padding-right: 16px;
+        padding-bottom: 0;
+        margin-right: 16px;
+        margin-bottom: 0;
+        border-bottom: none;
+        border-right: 1px solid var(--pale-color);
+      }
+
+      @include minScreen(1440px) {
+        padding-right: 30px;
+        margin-right: 30px;
+      }
+
+      @include minScreen(1920px) {
+        padding-right: 40px;
+        margin-right: 40px;
+      }
+    }
+  }
+
+  &__userpic {
+    width: 40px;
+    height: 40px;
+    margin-right: 14px;
+  }
+
+  &__leader-name {
+    margin-bottom: 4px;
+  }
+}

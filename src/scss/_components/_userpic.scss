@@ -1,0 +1,36 @@
+.userpic {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  filter: var(--img-filter);
+
+  @include maxScreen(360px) {
+    width: 45px;
+    height: 45px;
+  }
+
+  @include minScreen(1440px) {
+    width: 80px;
+    height: 80px;
+  }
+
+  @include minScreen(1920px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  &_mini {
+    width: 40px;
+    height: 40px;
+
+    @include minScreen(1440px) {
+      width: 60px;
+      height: 60px;
+    }
+
+    @include minScreen(1920px) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}

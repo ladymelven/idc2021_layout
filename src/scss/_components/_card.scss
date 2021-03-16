@@ -1,0 +1,86 @@
+.card {
+  position: relative;
+  width: 104px;
+  height: 142px;
+  border-radius: 6px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  transition: all .3s ease-out;
+  cursor: pointer;
+
+  @include maxScreen(375px) {
+    width: 90px;
+    height: 120px;
+  }
+
+  @include minScreen(768px) {
+    width: 120px;
+    height: 170px;
+  }
+
+  @include minScreen(1366px) {
+    width: 160px;
+    height: 200px;
+  }
+
+  @media only screen and (max-height: 700px) and (min-width: 1024px) {
+    max-height: 140px;
+  }
+
+  &:hover {
+    background: var(--hover-card);
+    box-shadow: var(--hover-card-shadow);
+  }
+
+  &:focus,
+  &:active,
+  &_chosen {
+    background: var(--active-card);
+    box-shadow: var(--active-card-shadow);
+  }
+
+  &_chosen {
+    pointer-events: none;
+  }
+
+  &__emoji {
+    top: -2px;
+
+    @include maxScreen(360px) {
+      top: -10px;
+    }
+
+    @include minScreen(768px) {
+      top: -7px;
+    }
+  }
+
+  &__userpic {
+    margin: 0 auto 6px;
+
+    @include minScreen(768px) {
+      margin-bottom: 15px;
+    }
+
+    @include minScreen(1024px) {
+      margin-bottom: 25px;
+    }
+
+    @media only screen and (max-height: 700px) and (min-width: 1024px) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__name {
+    padding: 0 4px;
+    text-align: center;
+
+    @include minScreen(1024px) {
+      padding: 0 10px;
+    }
+  }
+}

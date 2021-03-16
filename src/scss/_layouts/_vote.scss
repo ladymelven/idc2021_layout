@@ -1,0 +1,232 @@
+.vote {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  padding: 5px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 31px;
+  grid-row-gap: 4px;
+  justify-items: center;
+  align-items: center;
+
+  @include maxScreen(480px) {
+    padding: 23px;
+    grid-column-gap: 8px;
+    grid-row-gap: 22px;
+  }
+
+  @include maxScreen(375px) {
+    padding: 15px 10px;
+    grid-column-gap: 5px;
+  }
+
+  @include screen(668px, 767px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  @include minScreen(768px) {
+    padding: 45px 70px;
+    grid-column-gap: 30px;
+    grid-row-gap: 15px;
+  }
+
+  @include minScreen(1024px) {
+    max-width: 800px;
+  }
+
+  @include minScreen(1366px) {
+    max-width: 900px;
+  }
+
+  @media only screen and (min-height: 1024px) and (min-width: 1024px) {
+    max-height: 750px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  &__button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+
+    svg {
+      width: 64px;
+      height: 64px;
+      fill: var(--active-button);
+      transition: fill .3s ease-out;
+
+      @include maxScreen(360px) {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    &_up {
+      top: 57px;
+
+      @include maxScreen(667px) {
+        top: 23px;
+      }
+
+      @include maxScreen(375px) {
+        top: 15px;
+      }
+
+      @include minVerticalScreen(1000px) {
+        top: 0;
+      }
+
+      @media only screen and (max-height: 700px) and (min-width: 1024px) {
+        top: 20px;
+      }
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &_down {
+      bottom: 57px;
+
+      @include maxScreen(667px) {
+        bottom: 23px;
+      }
+
+      @include maxScreen(375px) {
+        bottom: 15px;
+      }
+
+      @include minVerticalScreen(1000px) {
+        bottom: 0;
+      }
+
+      @media only screen and (max-height: 700px) and (min-width: 1024px) {
+        bottom: 20px;
+      }
+    }
+
+    &:disabled,
+    &:hover,
+    &:focus,
+    &:active {
+      svg {
+        fill: $color-grey-dark;
+      }
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__card {
+    grid-row-end: span 2;
+
+    &:first-of-type,
+    &:nth-of-type(6),
+    &:nth-of-type(7) {
+      grid-column: 1 / 2;
+    }
+
+    &:nth-of-type(2),
+    &:nth-of-type(4) {
+      grid-column: 2 / 3;
+    }
+
+    &:nth-of-type(3),
+    &:nth-of-type(5),
+    &:nth-of-type(8) {
+      grid-column: 3 / 4;
+    }
+
+    &:first-child,
+    &:nth-of-type(3) {
+      grid-row-start: 1;
+    }
+
+    &:nth-of-type(2) {
+      grid-row-start: 2;
+    }
+
+    &:nth-of-type(4) {
+      grid-row-start: 4;
+    }
+
+    &:nth-of-type(5),
+    &:nth-of-type(6) {
+      grid-row-start: 3;
+    }
+
+    &:nth-of-type(7),
+    &:nth-of-type(8) {
+      grid-row-start: 5;
+    }
+
+    @include screen(668px, 767px) {
+      grid-row-end: span 1;
+
+      &:first-of-type {
+        grid-column: 1 / 2;
+        grid-row-end: span 2;
+      }
+
+      &:nth-of-type(3),
+      &:nth-of-type(5) {
+        grid-column: 4 / 5;
+      }
+
+      &:nth-of-type(6) {
+        grid-column: 5 / 6;
+        grid-row: 1 / span 2;
+      }
+
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        grid-row-start: 1;
+      }
+
+      &:nth-of-type(4),
+      &:nth-of-type(5) {
+        grid-row-start: 2;
+      }
+    }
+
+    @include minScreen(481px) {
+      &:nth-of-type(7),
+      &:nth-of-type(8) {
+        display: none;
+      }
+    }
+
+    @include minScreen(768px) {
+      &:nth-of-type(7),
+      &:nth-of-type(8) {
+        display: flex;
+      }
+    }
+
+    @include minScreen(1024px) {
+      &:nth-of-type(5) {
+        transform: translateX(110%);
+      }
+
+      &:nth-of-type(6) {
+        transform: translateX(-110%);
+      }
+    }
+
+    @include minScreen(1440px) {
+      &:nth-of-type(5) {
+        transform: translateX(150%);
+      }
+
+      &:nth-of-type(6) {
+        transform: translateX(-150%);
+      }
+    }
+  }
+}
