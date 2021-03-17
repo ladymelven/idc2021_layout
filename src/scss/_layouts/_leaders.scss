@@ -19,6 +19,12 @@
     max-height: 750px;
   }
 
+  @include maxScreen(481px) {
+    &_with-chosen {
+      padding-top: 59px;
+    }
+  }
+
   &__user {
     position: relative;
     width: 100%;

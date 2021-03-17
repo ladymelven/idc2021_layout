@@ -1,3 +1,13 @@
+const mod = (alias, data) => {
+  if (alias !== 'leaders') { return '' }
+
+  if (window.innerWidth < 481 &&
+    data.selectedUserId &&
+    data.users.findIndex(user => user.id === data.selectedUserId)) {
+    return 'with-chosen';
+  }
+}
+
 const setImage = (parent, selectorClass, id, avatar, name) => {
   const image = parent.querySelector(`.${selectorClass}`);
 
@@ -237,7 +247,7 @@ const renderChart = (data) => {
     const bar = document.createElement('div');
     bar.className = 'chart__unit';
     bar.innerHTML = `
-      <p class="chart__number subtitle pale">${dataUnit.value}</p>
+      <p class="chart__number subtitle pale">${dataUnit.value ? dataUnit.value : ''}</p>
       <div class="chart__bar"></div>
       <p class="chart__legend pale">${dataUnit.title}</p>
     `;
@@ -284,20 +294,20 @@ const renderDiagram = (data) => {
         <svg viewBox="0 0 134 134" class="diagram__donut">
           <defs>
             <radialGradient id="dark-0">
-              <stop offset="71.88%" stop-color="#FFA300" />
-              <stop offset="100%" stop-color="#5B3A00" />
+              <stop offset="71.88%" stop-color="rgba(255, 163, 0, 0.8)" />
+              <stop offset="100%" stop-color="rgba(91, 58, 0, 0.8)" />
             </radialGradient>
             <radialGradient id="dark-1">
-              <stop offset="72.92%" stop-color="#633F00" />
-              <stop offset="100%" stop-color="#0F0900" />
+              <stop offset="72.92%" stop-color="rgba(99, 63, 0, 0.5)" />
+              <stop offset="100%" stop-color="rgba(15, 9, 0, 0.5) 100%)" />
             </radialGradient>
             <radialGradient id="dark-2">
-              <stop offset="71.88%" stop-color="#9B9B9B" />
-              <stop offset="100%" stop-color="#382900" />
+              <stop offset="71.88%" stop-color="rgba(155, 155, 155, 0.5)" />
+              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />
             </radialGradient>
             <radialGradient id="dark-3">
-              <stop offset="71.88%" stop-color="#4D4D4D" />
-              <stop offset="100%" stop-color="#382900" />
+              <stop offset="71.88%" stop-color="rgba(77, 77, 77, 0.5)" />
+              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />
             </radialGradient>
 
             <radialGradient id="light-0">
@@ -555,7 +565,7 @@ window.renderTemplate = (alias, data) => {
     <div id="anchor" class="anchor">
       <h1 class="title title_main" id="main-title">${data.title}</h1>
       <p class="subtitle_main pale" id="subtitle">${data.subtitle}</p>
-      <div class="container ${alias}">${renderFunction(data)}</div>
+      <div class="container ${alias} ${alias}_${mod(alias, data)}">${renderFunction(data)}</div>
     </div>
   `;
 }
