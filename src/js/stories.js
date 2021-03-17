@@ -1,8 +1,8 @@
 const setImage = (parent, selectorClass, id, avatar, name) => {
   const image = parent.querySelector(`.${selectorClass}`);
 
-  image.srcset = `/assets/images/${id}.jpg 1.5x, /assets/images/${avatar}`;
-  image.src = `/assets/images/${avatar}`;
+  image.srcset = `assets/images/${id}.jpg 1.5x, assets/images/${avatar}`;
+  image.src = `assets/images/${avatar}`;
   image.alt = name;
 }
 
@@ -14,7 +14,7 @@ const setLeader = (userData, place) => {
         <span class="emoji leaders__emoji"></span>
         <img class="userpic leaders__userpic" src="" alt="">
         <p class="leaders__name"></p>
-        <p class="leaders__number pale"></p>
+        <p class="leaders__number caption pale"></p>
       </div>
       <div class="leaders__column"></div>
   `;
@@ -109,16 +109,20 @@ const renderVote = (data) => {
     minNum = data.users.findIndex(user => user.id === data.offset);
     maxNum = minNum + maxNum;
 
-    container.querySelector('#button-up').setAttribute('data-action', 'update');
-    container.querySelector('#button-up').setAttribute(
-      'data-params',
-      JSON.stringify({
-        alias: 'vote',
-        data: {
-          offset: data.users[minNum - 1].id
-        }
-      })
-    );
+    if (minNum) {
+      container.querySelector('#button-up').setAttribute('data-action', 'update');
+      container.querySelector('#button-up').setAttribute(
+        'data-params',
+        JSON.stringify({
+          alias: 'vote',
+          data: {
+            offset: data.users[minNum - 1].id
+          }
+        })
+      );
+    } else {
+      container.querySelector('#button-up').disabled = true;
+    }
 
     if (minNum + maxNum >= data.users.length) {
       container.querySelector('#button-down').disabled = true;
@@ -136,6 +140,8 @@ const renderVote = (data) => {
     }
   } else {
     container.querySelector('#button-up').disabled = true;
+
+    // edge case: даты может прийти только на один экран
     if (maxNum >= data.users.length) {
       container.querySelector('#button-down').disabled = true;
     } else {
@@ -160,8 +166,8 @@ const renderVote = (data) => {
     userCard.className = 'card vote__card';
     userCard.innerHTML = `
       <img 
-        srcset="/assets/images/${userData.id}.jpg 1.5x, /assets/images/${userData.avatar}" 
-        src="/assets/images/${userData.avatar}" alt="${userData.name}" 
+        srcset="assets/images/${userData.id}.jpg 1.5x, assets/images/${userData.avatar}" 
+        src="assets/images/${userData.avatar}" alt="${userData.name}" 
         class="userpic card__userpic">
       <p class="card__name">${userData.name}</p>
     `;
@@ -548,10 +554,8 @@ window.renderTemplate = (alias, data) => {
   return `
     <div id="anchor" class="anchor">
       <h1 class="title title_main" id="main-title">${data.title}</h1>
-      <p class="subtitle subtitle_main pale" id="subtitle">${data.subtitle}</p>
+      <p class="subtitle_main pale" id="subtitle">${data.subtitle}</p>
       <div class="container ${alias}">${renderFunction(data)}</div>
     </div>
   `;
 }
-
-

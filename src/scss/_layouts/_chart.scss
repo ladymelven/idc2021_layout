@@ -10,13 +10,13 @@
   overflow: hidden;
 
   @include minScreen(360px) {
-    padding: 24px;
+    padding: 13px 24px 24px;
   }
 
   @include minScreen(481px) {
     width: auto;
     align-items: stretch;
-    padding: 24px 58px;
+    padding: 13px 58px 24px;
     max-height: 500px;
   }
 

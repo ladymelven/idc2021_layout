@@ -69,7 +69,7 @@
       top: 57px;
 
       @include maxScreen(667px) {
-        top: 23px;
+        top: 24px;
       }
 
       @include maxScreen(375px) {
@@ -127,18 +127,18 @@
     grid-row-end: span 2;
 
     &:first-of-type,
-    &:nth-of-type(6),
+    &:nth-of-type(4),
     &:nth-of-type(7) {
       grid-column: 1 / 2;
     }
 
     &:nth-of-type(2),
-    &:nth-of-type(4) {
+    &:nth-of-type(5) {
       grid-column: 2 / 3;
     }
 
     &:nth-of-type(3),
-    &:nth-of-type(5),
+    &:nth-of-type(6),
     &:nth-of-type(8) {
       grid-column: 3 / 4;
     }
@@ -152,11 +152,11 @@
       grid-row-start: 2;
     }
 
-    &:nth-of-type(4) {
+    &:nth-of-type(5) {
       grid-row-start: 4;
     }
 
-    &:nth-of-type(5),
+    &:nth-of-type(4),
     &:nth-of-type(6) {
       grid-row-start: 3;
     }
@@ -175,11 +175,11 @@
       }
 
       &:nth-of-type(3),
-      &:nth-of-type(5) {
+      &:nth-of-type(6) {
         grid-column: 4 / 5;
       }
 
-      &:nth-of-type(6) {
+      &:nth-of-type(4) {
         grid-column: 5 / 6;
         grid-row: 1 / span 2;
       }
@@ -189,8 +189,8 @@
         grid-row-start: 1;
       }
 
-      &:nth-of-type(4),
-      &:nth-of-type(5) {
+      &:nth-of-type(5),
+      &:nth-of-type(6) {
         grid-row-start: 2;
       }
     }
@@ -210,22 +210,22 @@
     }
 
     @include minScreen(1024px) {
-      &:nth-of-type(5) {
-        transform: translateX(110%);
+      &:nth-of-type(4) {
+        transform: translateX(-110%);
       }
 
       &:nth-of-type(6) {
-        transform: translateX(-110%);
+        transform: translateX(110%);
       }
     }
 
     @include minScreen(1440px) {
-      &:nth-of-type(5) {
-        transform: translateX(150%);
+      &:nth-of-type(4) {
+        transform: translateX(-150%);
       }
 
       &:nth-of-type(6) {
-        transform: translateX(-150%);
+        transform: translateX(150%);
       }
     }
   }

@@ -8,7 +8,7 @@
   justify-content: center;
 
   @include maxScreen(667px) {
-    padding: 69px 24px 0;
+    padding: 91px 24px 0;
   }
 
   @include maxVerticalScreen(600px) {
@@ -219,7 +219,7 @@
   &__userpic {
     margin: 0 auto 6px;
 
-    @include maxScreen(1440px) {
+    @include minScreen(1440px) {
       margin-bottom: 15px;
     }
   }
