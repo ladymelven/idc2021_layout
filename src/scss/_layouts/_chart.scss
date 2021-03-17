@@ -44,6 +44,7 @@
   &__unit {
     position: relative;
     text-align: center;
+    min-height: 8px;
 
     &:not(:last-child) {
       margin-right: 24px;
@@ -63,8 +64,7 @@
 
   &__bar {
     width: 40px;
-    min-height: 8px;
-    max-height: 70%;
+    height: 100%;
     border-radius: 6px;
     box-shadow: var(--shadow-base-bar);
     background: var(--base-bar);

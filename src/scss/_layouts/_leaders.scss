@@ -3,12 +3,12 @@
   flex-grow: 1;
   max-height: 600px;
   margin-top: auto;
-  padding: 48px 66px 0 66px;
+  padding: 48px 66px 0;
   display: flex;
   justify-content: center;
 
   @include maxScreen(667px) {
-    padding: 69px 24px 0 24px;
+    padding: 69px 24px 0;
   }
 
   @include maxVerticalScreen(600px) {
@@ -19,140 +19,14 @@
     max-height: 750px;
   }
 
-  &__unit {
-    width: 100px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 3;
-
-    @include minScreen(375px) {
-      width: 120px;
-    }
-
-    @include minScreen(1024px) {
-      width: 170px;
-    }
-
-    @include minScreen(1366px) {
-      width: 200px;
-    }
-
-    &_left {
-      margin-right: -16px;
-
-      .leaders__user,
-      .leaders__column {
-        padding-right: 16px;
-      }
-
-      @include maxScreen(375px) {
-        margin-right: -14px;
-
-        .leaders__user,
-        .leaders__column {
-          padding-right: 14px;
-        }
-      }
-    }
-
-    &_right {
-      margin-left: -16px;
-
-      .leaders__user,
-      .leaders__column {
-        padding-left: 16px;
-      }
-
-      @include maxScreen(375px) {
-        margin-left: -14px;
-
-        .leaders__user,
-        .leaders__column {
-          padding-left: 14px;
-        }
-      }
-    }
-
-    &_runner-up,
-    &_top3 {
-      padding-top: 20px;
-      z-index: 2;
-
-      @include minScreen(1024px) {
-        padding-top: 40px;
-      }
-    }
-
-    &_runner-up {
-      @include maxScreen(480px) {
-        padding-top: 50px;
-      }
-    }
-
-    &_top3 {
-      @include maxScreen(480px) {
-        padding-top: 100px;
-      }
-    }
-
-    &_top4,
-    &_top5 {
-      padding-top: 40px;
-      z-index: 1;
-
-      @include maxScreen(667px) {
-        display: none;
-      }
-
-      @include minScreen(1024px) {
-        padding-top: 80px;
-      }
-    }
-  }
-
   &__user {
-    width: 100%;
     position: relative;
+    width: 100%;
     text-align: center;
     margin-bottom: 16px;
 
     @include minScreen(1440px) {
       margin-bottom: 25px;
-    }
-
-    span {
-      position: absolute;
-      top: -22px;
-      //left: 50%;
-      transform: translateX(-50%);
-      font-size: 32px;
-      line-height: 1;
-      z-index: 1;
-
-      @include minScreen(1440px) {
-        font-size: 40px;
-        top: -28px;
-      }
-    }
-
-    img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      margin: 0 auto 6px auto;
-      filter: var(--img-filter);
-
-      @include minScreen(1440px) {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 15px;
-      }
-
-      @include minScreen(1920px) {
-        width: 100px;
-        height: 100px;
-      }
     }
 
     &_chosen {
@@ -178,23 +52,15 @@
     }
   }
 
-  &__name {
-    max-width: 105px;
-    margin: 0 auto 4px auto;
-
-    @include minScreen(1440px) {
-      margin-bottom: 10px;
-    }
-  }
-
   &__column {
+    @include title;
+
     width: 100%;
     flex-grow: 1;
     border-radius: 6px 6px 0 0;
     background: var(--base-bar);
     box-shadow: var(--shadow-base-bar);
     padding-top: 18px;
-    @extend .title;
     text-align: center;
 
     &_bright {
@@ -203,12 +69,177 @@
     }
   }
 
+  &__unit {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 4;
+
+    @include minScreen(375px) {
+      width: 120px;
+    }
+
+    @include minScreen(768px) {
+      width: 140px;
+    }
+
+    @include minScreen(1366px) {
+      width: 170px;
+    }
+
+    @include minScreen(1920px) {
+      width: 200px;
+    }
+
+    &_left {
+      margin-right: -16px;
+
+      @include maxScreen(375px) {
+        margin-right: -14px;
+
+        //stylelint-disable-next-line max-nesting-depth
+        .leaders__user,
+        .leaders__column {
+          padding-right: 14px;
+        }
+      }
+
+      //stylelint-disable-next-line max-nesting-depth
+      .leaders__user,
+      .leaders__column {
+        padding-right: 16px;
+      }
+    }
+
+    &_right {
+      margin-left: -16px;
+
+      @include maxScreen(375px) {
+        margin-left: -14px;
+
+        //stylelint-disable-next-line max-nesting-depth
+        .leaders__user,
+        .leaders__column {
+          padding-left: 14px;
+        }
+      }
+
+      //stylelint-disable-next-line max-nesting-depth
+      .leaders__user,
+      .leaders__column {
+        padding-left: 16px;
+      }
+    }
+
+    &_top2,
+    &_top3 {
+      padding-top: 20px;
+      z-index: 3;
+
+      @include minScreen(768px) {
+        padding-top: 40px;
+      }
+    }
+
+    &_top2 {
+      @include maxScreen(480px) {
+        padding-top: 50px;
+      }
+    }
+
+    &_top3 {
+      @include maxScreen(480px) {
+        padding-top: 100px;
+      }
+    }
+
+    &_top4,
+    &_top5 {
+      padding-top: 40px;
+      z-index: 2;
+
+      @include maxScreen(667px) {
+        display: none;
+      }
+
+      @include minScreen(768px) {
+        padding-top: 80px;
+      }
+    }
+
+    &_top6,
+    &_top7 {
+      padding-top: 40px;
+      z-index: 1;
+
+      @include maxScreen(1365px) {
+        display: none;
+      }
+
+      @include minScreen(1366px) {
+        padding-top: 120px;
+      }
+    }
+
+    &_top8,
+    &_top9 {
+      padding-top: 40px;
+      z-index: 0;
+
+      @include maxScreen(1919px) {
+        display: none;
+      }
+
+      @include minScreen(1920px) {
+        padding-top: 160px;
+      }
+    }
+  }
+
+  &__emoji {
+    top: -22px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+
+    .leaders__unit_left & {
+      padding-right: 16px;
+    }
+
+    .leaders__unit_right & {
+      padding-left: 16px;
+    }
+
+    @include minScreen(1440px) {
+      top: -28px;
+    }
+  }
+
+  &__userpic {
+    margin: 0 auto 6px;
+
+    @include maxScreen(1440px) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__name {
+    max-width: 105px;
+    margin: 0 auto 4px;
+
+    @include minScreen(1440px) {
+      margin-bottom: 10px;
+    }
+  }
+
   &__position {
+    @include title;
+
     width: 60px;
-    margin: 9px auto 0 auto;
+    margin: 9px auto 0;
     border-top: 1px solid var(--pale-color);
     padding-top: 6px;
-    @extend .title;
     text-align: center;
   }
 }

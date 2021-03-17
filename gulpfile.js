@@ -18,7 +18,6 @@ const path = {
     style: "build/",
     images: "build/assets/images/",
     fonts: "build/assets/fonts/",
-    svg: "build/assets/svg/",
     data: "build/data/",
     libs: "build/libs/"
   },
@@ -28,8 +27,7 @@ const path = {
     style: "src/scss/*.scss",
     images: "src/assets/images/**/*.*",
     fonts: "src/assets/fonts/*.*",
-    data: "src/data/*.json",
-    svg: "src/assets/svg/*.*"
+    data: "src/data/*.json"
   },
   watch: {
     html: "src/*.html",
@@ -37,8 +35,7 @@ const path = {
     style: "src/scss/**/*.scss",
     images: "src/assets/images/**/*.*",
     fonts: "src/assets/fonts/*.*",
-    data: "src/data/*.json",
-    svg: "src/assets/svg/*.svg"
+    data: "src/data/*.json"
   },
   clean: "build"
 };
@@ -112,17 +109,8 @@ function data(cb) {
   cb();
 }
 
-function svg(cb) {
-  gulp
-    .src(path.src.svg)
-    .pipe(svgstore({ inlineSvg: true }))
-    .pipe(rename('sprite.svg'))
-    .pipe(gulp.dest(path.build.svg));
-  cb();
-}
-
-module.exports.default = gulp.series(clean, gulp.parallel(html, style, js, images, fonts, data, svg));
-module.exports.build = gulp.series(clean, gulp.parallel(html, buildStyle, buildJs, images, fonts, data, svg));
+module.exports.default = gulp.series(clean, gulp.parallel(html, style, js, images, fonts, data));
+module.exports.build = gulp.series(clean, gulp.parallel(html, buildStyle, buildJs, images, fonts, data));
 module.exports.serve = function serve () {
   server.init({
     server: path.build.html,
@@ -133,7 +121,7 @@ module.exports.serve = function serve () {
     port: 8080
   });
 
-  gulp.series(clean, gulp.parallel(html, style, js, images, fonts, svg));
+  gulp.series(clean, gulp.parallel(html, style, js, images, fonts));
 
   gulp.watch(path.watch.html, gulp.series(html)).on('change', server.reload);
   gulp.watch(path.watch.style, gulp.series(style)).on('change', server.reload);
@@ -141,5 +129,4 @@ module.exports.serve = function serve () {
   gulp.watch(path.watch.images, gulp.series(images)).on('change', server.reload);
   gulp.watch(path.watch.fonts, gulp.series(fonts)).on('change', server.reload);
   gulp.watch(path.watch.data, gulp.series(data)).on('change', server.reload);
-  gulp.watch(path.watch.svg, gulp.series(svg)).on('change', server.reload);
 }

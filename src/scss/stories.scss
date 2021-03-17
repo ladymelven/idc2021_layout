@@ -1,3 +1,4 @@
+//BASE
 @import '_base/reset';
 @import '_base/fonts';
 @import '_base/mixins';
@@ -5,5 +6,15 @@
 @import '_base/theme';
 @import '_base/typography';
 
+//LAYOUTS
 @import '_layouts/template';
 @import '_layouts/leaders';
+@import '_layouts/vote';
+@import '_layouts/chart';
+@import '_layouts/diagram';
+@import '_layouts/activity';
+
+//COMPONENTS
+@import '_components/emoji';
+@import '_components/userpic';
+@import '_components/card';

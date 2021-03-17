@@ -150,7 +150,7 @@
     width: 100%;
     max-width: 400px;
 
-    @include screen(481, 767px) {
+    @include screen(481px, 767px) {
       flex-grow: 1;
     }
 

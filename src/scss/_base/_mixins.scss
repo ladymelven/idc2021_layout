@@ -2,6 +2,7 @@
   @if (type-of($number) == 'number' and not unitless($number)) {
     @return $number / ($number * 0 + 1);
   }
+
   @return $number;
 }
 
@@ -9,11 +10,9 @@
   @media (min-width: $minViewPort) {
     #{$prop}: $max;
   }
+
   @media (min-width: $minViewPort) and (max-width: $maxViewPort) {
-    #{$prop}: calc(
-            #{$min} + #{strip-unit($max - $min)} *
-            ((100vw - #{$minViewPort}) / (#{strip-unit($maxViewPort - $minViewPort)}))
-    );
+    #{$prop}: calc(#{$min} + #{strip-unit($max - $min)} * ((100vw - #{$minViewPort}) / (#{strip-unit($maxViewPort - $minViewPort)})));
   }
 }
 
@@ -50,5 +49,37 @@
 @mixin verticalScreen ($min, $max) {
   @media only screen and (min-height: $min) and (max-height: $max) {
     @content;
+  }
+}
+
+@mixin title {
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 700;
+
+  @include minScreen(1440px) {
+    font-size: 45px;
+    line-height: 50px;
+  }
+}
+
+@mixin subtitle {
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 700;
+
+  @include minScreen(1440px) {
+    font-size: 30px;
+    line-height: 32px;
+  }
+}
+
+@mixin caption {
+  font-size: 14px;
+  line-height: 16px;
+
+  @include minScreen(1440px) {
+    font-size: 16px;
+    line-height: 18px;
   }
 }

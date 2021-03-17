@@ -252,10 +252,10 @@ const init = () => {
 
   const slide = Number.parseInt(params.get('slide')) || 0;
   document.title = data[slide].data.title;
-  document.body.innerHTML += window.renderTemplate(data[slide]);
+  document.body.innerHTML += window.renderTemplate(data[slide].alias, data[slide].data);
 
   window.addEventListener('resize', () => {
-    document.body.innerHTML = window.renderTemplate(data[slide]);
+    document.body.innerHTML = window.renderTemplate(data[slide].alias, data[slide].data);
   });
 }
 
