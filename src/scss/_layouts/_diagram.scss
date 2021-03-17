@@ -173,7 +173,7 @@
     &:not(:last-child) {
       padding-bottom: 10px;
       margin-bottom: 10px;
-      border-bottom: 1px solid var(--pale-color);
+      border-bottom: 2px solid var(--pale-color);
 
       @include minScreen(360px) {
         padding-bottom: 16px;

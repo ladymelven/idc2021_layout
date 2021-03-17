@@ -129,7 +129,7 @@
       margin-right: 0;
       margin-bottom: 16px;
       border-right: none;
-      border-bottom: 1px solid var(--pale-color);
+      border-bottom: 2px solid var(--pale-color);
 
       @include minScreen(480px) {
         box-sizing: content-box;
@@ -138,7 +138,7 @@
         margin-right: 16px;
         margin-bottom: 0;
         border-bottom: none;
-        border-right: 1px solid var(--pale-color);
+        border-right: 2px solid var(--pale-color);
       }
 
       @include minScreen(1440px) {
