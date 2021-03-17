@@ -7,8 +7,7 @@
 
 body {
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: .02em; }
+  -moz-osx-font-smoothing: grayscale; }
 
 h1,
 h2,
@@ -152,8 +151,7 @@ body {
 .title {
   font-size: 30px;
   line-height: 32px;
-  font-weight: 700;
-  letter-spacing: normal; }
+  font-weight: 700; }
   @media only screen and (min-width: 1440px) {
     .title {
       font-size: 45px;
@@ -187,7 +185,8 @@ body {
 
 .caption {
   font-size: 14px;
-  line-height: 16px; }
+  line-height: 16px;
+  font-weight: 400; }
   @media only screen and (min-width: 1440px) {
     .caption {
       font-size: 16px;
@@ -263,7 +262,6 @@ body {
     font-size: 30px;
     line-height: 32px;
     font-weight: 700;
-    letter-spacing: normal;
     width: 100%;
     flex-grow: 1;
     border-radius: 6px 6px 0 0;
@@ -384,7 +382,6 @@ body {
     font-size: 30px;
     line-height: 32px;
     font-weight: 700;
-    letter-spacing: normal;
     width: 60px;
     margin: 9px auto 0;
     border-top: 1px solid var(--pale-color);
@@ -488,7 +485,7 @@ body {
     grid-row-end: span 2; }
     @media only screen and (max-width: 480px) {
       .vote__card:not(.card_chosen) {
-        top: 1px; } }
+        top: -1px; } }
     .vote__card:first-of-type, .vote__card:nth-of-type(4), .vote__card:nth-of-type(7) {
       grid-column: 1 / 2; }
     .vote__card:nth-of-type(2), .vote__card:nth-of-type(5) {
@@ -766,8 +763,7 @@ body {
       .diagram__value {
         font-size: 30px;
         line-height: 32px;
-        font-weight: 700;
-        letter-spacing: normal; } }
+        font-weight: 700; } }
   @media only screen and (min-width: 360px) and (max-width: 480px) and (min-width: 1440px) {
     .diagram__value {
       font-size: 45px;
@@ -977,7 +973,8 @@ body {
   @media only screen and (max-width: 767px) {
     .activity-legend__text {
       font-size: 14px;
-      line-height: 16px; } }
+      line-height: 16px;
+      font-weight: 400; } }
   @media only screen and (max-width: 767px) and (min-width: 1440px) {
     .activity-legend__text {
       font-size: 16px;

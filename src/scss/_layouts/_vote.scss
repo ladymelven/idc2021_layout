@@ -129,7 +129,7 @@
     //в угоду пиксель-перфекту
     @include maxScreen(480px) {
       &:not(.card_chosen) {
-        top: 1px;
+        top: -1px;
       }
     }
 
