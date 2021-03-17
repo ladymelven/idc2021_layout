@@ -126,6 +126,13 @@
   &__card {
     grid-row-end: span 2;
 
+    //в угоду пиксель-перфекту
+    @include maxScreen(480px) {
+      &:not(.card_chosen) {
+        top: 1px;
+      }
+    }
+
     &:first-of-type,
     &:nth-of-type(4),
     &:nth-of-type(7) {
