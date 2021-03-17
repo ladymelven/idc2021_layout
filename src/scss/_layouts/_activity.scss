@@ -42,11 +42,11 @@
 
     &:nth-child(2n) {
       margin-left: calc(var(--cell-width) * .5);
-      margin-top: calc(var(--cell-width) * -.6);
+      margin-top: calc(var(--cell-width) * -.615);
     }
 
     &:nth-child(2n + 3) {
-      margin-top: calc(var(--cell-width) * -.6);
+      margin-top: calc(var(--cell-width) * -.615);
     }
   }
 

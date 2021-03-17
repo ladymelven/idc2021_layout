@@ -68,9 +68,11 @@ svg {
 :root {
   --bg-color: radial-gradient(70.24% 70.24% at 49.87% 29.76%, rgba(19, 14, 0, .9) 0%, #000 100%);
   --text-color: #FCFBF7;
-  --pale-color: #918F8A;
+  --pale-color: #918f8a;
+  --pale-color-transparent: rgba(145, 143 ,138, .3);
   --img-filter: grayscale(1);
   --active-button: #FCFBF7;
+  --bright-column: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #FFA300 0%, #2D1C00 100%);
   --bright-bar: radial-gradient(81.14% 100% at 50% 0%, #FFA300 0%, #2D1C00 100%);
   --base-bar: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .8) 100%), radial-gradient(149.08% 93.3% at 38.75% 72.1%, #000 0%, #231900 .01%, #4D4D4D 100%);
   --shadow-bright-bar: inset -1px 1px 1px rgba(255, 255, 255, 0.4), inset 0 6px 15px rgba(255, 162, 0, 0.5);
@@ -103,8 +105,10 @@ svg {
   --bg-color: linear-gradient(#FFF, #FFF);
   --text-color: #261C00;
   --pale-color: #BFBFBF;
+  --pale-color-transparent: rgba(191, 191, 191, 0.3);
   --img-filter: none;
   --active-button: #F4B000;
+  --bright-column: linear-gradient(180deg, #FFF2D1 0.82%, #FFD66C 100%);
   --bright-bar: linear-gradient(180deg, #FFF2D1 .82%, #FFD66C 100%);
   --base-bar: linear-gradient(180deg, rgba(244, 244, 244, .9) .82%, #E9E9E9 100%, rgba(234, 234, 234, 0) 100%);
   --shadow-bright-bar: inset 0 6px 15px 0 rgba(255, 176, 57, .8), inset -1px 1px 1px 0 rgba(255, 255, 255, .5);
@@ -269,7 +273,7 @@ body {
         font-size: 45px;
         line-height: 50px; } }
     .leaders__column_bright {
-      background: var(--bright-bar);
+      background: var(--bright-column);
       box-shadow: var(--shadow-bright-bar); }
   .leaders__unit {
     width: 100px;
@@ -401,7 +405,7 @@ body {
   align-items: center; }
   @media only screen and (max-width: 480px) {
     .vote {
-      padding: 23px;
+      padding: 22px 23px 24px;
       grid-column-gap: 8px;
       grid-row-gap: 22px; } }
   @media only screen and (max-width: 375px) {
@@ -473,7 +477,7 @@ body {
         .vote__button_down {
           bottom: 20px; } }
     .vote__button:disabled svg, .vote__button:hover svg, .vote__button:focus svg, .vote__button:active svg {
-      fill: #c4c4c4; }
+      fill: var(--pale-color); }
     .vote__button:disabled {
       cursor: default; }
   .vote__card {
@@ -665,7 +669,7 @@ body {
       align-items: center; } }
   @media only screen and (min-width: 667px) {
     .diagram {
-      padding: 0 42px 29px; } }
+      padding: 29px 42px; } }
   @media only screen and (min-width: 768px) {
     .diagram {
       padding-right: 60px;
@@ -723,13 +727,13 @@ body {
     width: 100%;
     height: 100%; }
   .diagram__donut-segment:first-child {
-    filter: drop-shadow(0px 0px 20px -8px rgba(248, 158, 0, 0.2)); }
+    filter: drop-shadow(0px 0px 20px rgba(248, 158, 0, 0.2)); }
   .diagram__donut-segment:nth-child(2) {
-    filter: drop-shadow(0px 0px 20px -8px rgba(147, 93, 0, 0.2)); }
+    filter: drop-shadow(0px 0px 20px rgba(147, 93, 0, 0.2)); }
   .diagram__donut-segment:nth-child(3) {
-    filter: drop-shadow(0px 0px 20px -8px rgba(0, 0, 0, 0.2)); }
+    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.2)); }
   .diagram__donut-segment:nth-child(4) {
-    filter: drop-shadow(0px 0px 20px -8px rgba(96, 96, 96, 0.2)); }
+    filter: drop-shadow(0px 0px 20px rgba(96, 96, 96, 0.2)); }
   .theme_light .diagram__donut-segment:first-child,
   .theme_light .diagram__donut-segment:nth-child(2),
   .theme_light .diagram__donut-segment:nth-child(3),
@@ -795,7 +799,7 @@ body {
   .diagram-legend__line:not(:last-child) {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 2px solid var(--pale-color); }
+    border-bottom: 2px solid var(--pale-color-transparent); }
     @media only screen and (min-width: 360px) {
       .diagram-legend__line:not(:last-child) {
         padding-bottom: 16px;
@@ -872,9 +876,9 @@ body {
     display: flex; }
     .activity__grid-row:nth-child(2n) {
       margin-left: calc(var(--cell-width) * .5);
-      margin-top: calc(var(--cell-width) * -.6); }
+      margin-top: calc(var(--cell-width) * -.615); }
     .activity__grid-row:nth-child(2n + 3) {
-      margin-top: calc(var(--cell-width) * -.6); }
+      margin-top: calc(var(--cell-width) * -.615); }
   .activity__grid-cell {
     position: relative;
     width: var(--cell-width);

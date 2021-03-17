@@ -12,7 +12,7 @@
   align-items: center;
 
   @include maxScreen(480px) {
-    padding: 23px;
+    padding: 22px 23px 24px;
     grid-column-gap: 8px;
     grid-row-gap: 22px;
   }
@@ -114,7 +114,7 @@
     &:focus,
     &:active {
       svg {
-        fill: #c4c4c4;
+        fill: var(--pale-color);
       }
     }
 
