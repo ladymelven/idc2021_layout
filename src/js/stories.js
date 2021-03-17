@@ -336,7 +336,7 @@ const renderDiagram = (data) => {
       <ul class="diagram__legend diagram-legend"></ul>
   `;
 
-  container.querySelector('.diagram__value').innerHTML = data.totalText;
+  container.querySelector('.diagram__value').innerHTML = data.totalText.split(' ').join('<br>');
   container.querySelector('.diagram__change-value').innerHTML = data.differenceText;
   let values = [];
 
