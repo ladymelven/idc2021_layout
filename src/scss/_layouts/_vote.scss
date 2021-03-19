@@ -126,10 +126,20 @@
   &__card {
     grid-row-end: span 2;
 
-    //в угоду пиксель-перфекту
+    //во имя пиксель-перфекта
     @include maxScreen(480px) {
       &:not(.card_chosen) {
-        top: -1px;
+        top: -2px;
+      }
+    }
+
+    @include screen(481px, 767px) {
+      &:first-child {
+        left: -1px;
+      }
+
+      &:nth-child(6) {
+        right: -1px;
       }
     }
 

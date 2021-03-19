@@ -485,7 +485,12 @@ body {
     grid-row-end: span 2; }
     @media only screen and (max-width: 480px) {
       .vote__card:not(.card_chosen) {
-        top: -1px; } }
+        top: -2px; } }
+    @media only screen and (min-width: 481px) and (max-width: 767px) {
+      .vote__card:first-child {
+        left: -1px; }
+      .vote__card:nth-child(6) {
+        right: -1px; } }
     .vote__card:first-of-type, .vote__card:nth-of-type(4), .vote__card:nth-of-type(7) {
       grid-column: 1 / 2; }
     .vote__card:nth-of-type(2), .vote__card:nth-of-type(5) {
