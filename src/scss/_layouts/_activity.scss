@@ -177,6 +177,7 @@
 
     @include maxScreen(767px) {
       @include caption;
+      font-weight: 500;
     }
 
     @include minScreen(1024px) {
