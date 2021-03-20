@@ -15,14 +15,14 @@
 
   flex-grow: 1;
   width: 100%;
-  padding: 15px;
+  padding: 0 15px 15px;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
 
   @include minScreen(360px) {
-    padding: 24px;
+    padding: 0 24px 24px;
   }
 
   @include minScreen(667px) {

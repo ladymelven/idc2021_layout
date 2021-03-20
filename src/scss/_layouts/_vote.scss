@@ -129,7 +129,7 @@
     //во имя пиксель-перфекта
     @include maxScreen(480px) {
       &:not(:nth-of-type(2)) {
-        top: -2px;
+        top: -1px;
       }
 
       &:nth-of-type(6) {
@@ -151,11 +151,11 @@
 
     @include screen(481px, 767px) {
       &:first-of-type {
-        left: -3px;
+        left: 1px;
       }
 
-      &:nth-of-type(6) {
-        right: -3px;
+      &:nth-of-type(4) {
+        right: 1px;
       }
     }
 
