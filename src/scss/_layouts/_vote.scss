@@ -128,33 +128,33 @@
 
     //во имя пиксель-перфекта
     @include maxScreen(480px) {
-      &:not(:nth-child(2)) {
+      &:not(:nth-of-type(2)) {
         top: -2px;
       }
 
-      &:nth-child(6) {
+      &:nth-of-type(6) {
         top: -1px;
       }
 
-      &:first-child,
-      &:nth-child(4),
-      &:nth-child(7) {
+      &:first-of-type,
+      &:nth-of-type(4),
+      &:nth-of-type(7) {
         left: 1px;
       }
 
-      &:nth-child(3),
-      &:nth-child(5),
-      &:nth-child(8) {
+      &:nth-of-type(3),
+      &:nth-of-type(5),
+      &:nth-of-type(8) {
         right: 1px;
       }
     }
 
     @include screen(481px, 767px) {
-      &:first-child {
+      &:first-of-type {
         left: -3px;
       }
 
-      &:nth-child(6) {
+      &:nth-of-type(6) {
         right: -3px;
       }
     }

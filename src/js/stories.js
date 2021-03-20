@@ -420,6 +420,7 @@ const renderActivity = (data) => {
       }
       groupedData[day] = grouped;
     }
+    container.querySelector('.activity-legend__text').innerHTML = '2 часа';
   }
 
   let maxValue = 0;
