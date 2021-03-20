@@ -128,18 +128,34 @@
 
     //во имя пиксель-перфекта
     @include maxScreen(480px) {
-      &:not(.card_chosen) {
+      &:not(:nth-child(2)) {
         top: -2px;
+      }
+
+      &:nth-child(6) {
+        top: -1px;
+      }
+
+      &:first-child,
+      &:nth-child(4),
+      &:nth-child(7) {
+        left: -1px;
+      }
+
+      &:nth-child(3),
+      &:nth-child(5),
+      &:nth-child(8) {
+        right: -1px;
       }
     }
 
     @include screen(481px, 767px) {
       &:first-child {
-        left: -1px;
+        left: -2px;
       }
 
       &:nth-child(6) {
-        right: -1px;
+        right: -2px;
       }
     }
 
