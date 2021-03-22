@@ -6,7 +6,7 @@
   }
 
   @include minScreen(667px) {
-    --cell-width: calc((100vw - 240px) / 13);
+    --cell-width: calc((100vw - 240px) / 12.5);
   }
 
   @include minScreen(1366px) {
