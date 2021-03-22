@@ -285,56 +285,139 @@ const renderChart = (data) => {
   return container.innerHTML;
 }
 
+function arc(startAngle, endAngle, outerRadius, innerRadius = 0) {
+  const sinAlpha = Math.sin(startAngle);
+  const cosAlpha = Math.cos(startAngle);
+  const sinBeta = Math.sin(endAngle);
+  const cosBeta = Math.cos(endAngle);
+
+  const largeArc = endAngle - startAngle > Math.PI;
+
+  const P = {
+    x: outerRadius + outerRadius * sinAlpha,
+    y: outerRadius - outerRadius * cosAlpha
+  };
+
+  const Q = {
+    x: outerRadius + outerRadius * sinBeta,
+    y: outerRadius - outerRadius * cosBeta
+  };
+
+  const R = {
+    x: outerRadius + innerRadius * sinBeta,
+    y: outerRadius - innerRadius * cosBeta
+  };
+
+  const S = {
+    x: outerRadius + innerRadius * sinAlpha,
+    y: outerRadius - innerRadius * cosAlpha
+  };
+
+  return `M${P.x},${P.y} 
+  A${outerRadius},${outerRadius} 0 ${largeArc ? '1,1' : '0,1'} ${Q.x},${Q.y} 
+  L${R.x},${R.y} 
+  A${innerRadius},${innerRadius} 0 ${largeArc ? '1,0' : '0,0'} ${S.x},${S.y}
+   Z`;
+}
+
 const renderDiagram = (data) => {
   const theme = document.body.classList.contains('theme_light') ? 'light' : 'dark';
 
   const container = document.createElement('div');
   container.innerHTML = `
       <div class="diagram__donut-wrap">
-        <svg viewBox="0 0 134 134" class="diagram__donut">
+        <svg viewBox="0 0 2 2" class="diagram__donut">
           <defs>
-            <radialGradient id="dark-0" cx="50%" cy="40%">
+            <radialGradient id="dark-0" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
               <stop offset="72%" stop-color="rgba(255, 163, 0, 0.8)" />
               <stop offset="100%" stop-color="rgba(91, 58, 0, 0.8)" />
             </radialGradient>
-            <radialGradient id="dark-1" cx="55%" cy="45%">
-              <stop offset="73%" stop-color="rgb(99, 63, 0)" />
-              <stop offset="100%" stop-color="rgb(15, 9, 0) 100%)" />
+            <radialGradient id="dark-1" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
+              <stop offset="73%" stop-color="rgba(99, 63, 0, .5)" />
+              <stop offset="100%" stop-color="rgba(15, 9, 0, .5) 100%)" />
             </radialGradient>
-            <radialGradient id="dark-2" cx="52%" cy="52%">
-              <stop offset="72%" stop-color="rgb(155, 155, 155)" />
-              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
+            <radialGradient id="dark-2" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
+              <stop offset="72%" stop-color="rgb(155, 155, 155, 0.5)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0, 0.5)" />
             </radialGradient>
-            <radialGradient id="dark-3" cx="40%" cy="50%">
-              <stop offset="72%" stop-color="rgb(77, 77, 77)" />
-              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
+            <radialGradient id="dark-3" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
+              <stop offset="72%" stop-color="rgb(77, 77, 77, 0.5)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0, 0.5)" />
             </radialGradient>
 
-            <radialGradient id="light-0" cx="50%" cy="40%">
+            <radialGradient id="light-0" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
               <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.7)" />
               <stop offset="100%" stop-color="rgba(255, 239, 153, 0.4)" />
             </radialGradient>
-            <radialGradient id="light-1" cx="55%" cy="45%">
+            <radialGradient id="light-1" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
               <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.4)" />
               <stop offset="100%" stop-color="rgba(255, 239, 153, 0.2)" />
             </radialGradient>
-            <radialGradient id="light-2" cx="48%" cy="48%">
+            <radialGradient id="light-2" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
               <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.69)" />
               <stop offset="100%" stop-color="rgba(203, 203, 203, 0.2)" />
             </radialGradient>
-            <radialGradient id="light-3" cx="40%" cy="50%">
+            <radialGradient id="light-3" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
               <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.69)" />
               <stop offset="100%" stop-color="rgba(228, 228, 228, 0.2)" />
             </radialGradient>
             
-            <filter id="shadow-dark-0">
-<!--              <feColorMatrix-->
-<!--                type = "matrix"-->
-<!--                values="1 0 0 0 0 0 0.64 0 0 0 0 0 0 0 0 0 0 0 0.9 0"/>-->
-              <feDiffuseLighting lighting-color="rgba(255, 162, 0, 0.9)" surfaceScale="2" diffuseConstant="1">
-              <fePointLight x="-30" y="-30" z="230"/>
-              <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="20" />
-<!--              <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />-->
+            <filter id="shadow-dark-0" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+             <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(255, 162, 0)" flood-opacity="0.9" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-dark-1" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(202, 129, 0)" flood-opacity="0.9" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-dark-2" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(139, 139, 139)" flood-opacity="0.9" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-dark-3" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(38, 38, 38)" flood-opacity="0.9" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            
+            <filter id="shadow-light-0" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+             <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(255, 176, 57)" flood-opacity="0.9" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-light-1" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(255, 176, 57)" flood-opacity="0.4" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-light-2" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(105, 105, 105)" flood-opacity="0.2" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
+            </filter>
+            <filter id="shadow-light-3" primitiveUnits="objectBoundingBox" x="0%" y="0%">
+              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+             <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+             <feFlood flood-color="rgb(131, 131, 131)" flood-opacity="0.6" result="color" />
+             <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+             <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
             </filter>
           </defs>
         </svg>
@@ -366,25 +449,25 @@ const renderDiagram = (data) => {
   });
 
   const total = values.reduce((one, two) => one + two);
-  let offset = 90 + (Math.round(360 * values[0] / total) - 1) / 2;
   const donut = container.querySelector('.diagram__donut');
+  donut.style.transform = `rotate(-${(values[0] * 360 / total) / 2}deg)`;
+  let offset = 0;
   values.forEach((value, index) => {
-    const slice = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
-    const length = Math.round(360 * value / total) - 1;
+    const slice = document.createElementNS('http://www.w3.org/2000/svg', 'path')
     slice.classList.add('diagram__donut-segment');
-    slice.setAttribute('cx', '67');
-    slice.setAttribute('cy', '67');
-    slice.setAttribute('r', '57.29577951');
-    slice.setAttribute('fill', 'transparent');
-    slice.setAttribute('stroke', `url(#${theme}-${index})`);
+    slice.setAttribute('r', '1');
+    slice.setAttribute('fill', `url(#${theme}-${index})`);
     slice.setAttribute('filter', `url(#shadow-${theme}-${index})`);
-    slice.setAttribute('stroke-width', '17.2');
-    slice.setAttribute('stroke-dasharray', `${length} ${360 - length}`);
-    slice.setAttribute('stroke-dashoffset', `${offset + 1}`);
+
+    const start = offset;
+    offset += (values[index] * Math.PI * 2 / total) - 0.0174533;
+    const end = offset;
+
+    const pathData = arc(start, end,1, 0.7);
+    slice.setAttribute('d', pathData);
 
     donut.prepend(slice);
-    // offset = length - offset >= 0 ? length - offset : 360 - length + offset;
-    offset -= (length + 1);
+    offset += 0.0174533;
   });
 
   return container.innerHTML;
