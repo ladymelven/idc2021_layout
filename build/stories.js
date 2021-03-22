@@ -1,1 +1,583 @@
-"use strict";function _toConsumableArray(e){return _arrayWithoutHoles(e)||_iterableToArray(e)||_unsupportedIterableToArray(e)||_nonIterableSpread()}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _unsupportedIterableToArray(e,t){if(e){if("string"==typeof e)return _arrayLikeToArray(e,t);var a=Object.prototype.toString.call(e).slice(8,-1);return"Object"===a&&e.constructor&&(a=e.constructor.name),"Map"===a||"Set"===a?Array.from(e):"Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a)?_arrayLikeToArray(e,t):void 0}}function _iterableToArray(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}function _arrayWithoutHoles(e){if(Array.isArray(e))return _arrayLikeToArray(e)}function _arrayLikeToArray(e,t){(null==t||t>e.length)&&(t=e.length);for(var a=0,r=new Array(t);a<t;a++)r[a]=e[a];return r}var mod=function(e,t){return"leaders"!==e?"":window.innerWidth<481&&t.selectedUserId&&t.users.findIndex((function(e){return e.id===t.selectedUserId}))?"with-chosen":void 0},setImage=function(e,t,a,r,n){var i=e.querySelector(".".concat(t));i.srcset="assets/images/".concat(a,".jpg 1.5x, assets/images/").concat(r),i.src="assets/images/".concat(r),i.alt=n},setLeader=function(e,t){var a=document.createElement("div");return a.classList.add("leaders__unit"),a.innerHTML='\n      <div class="leaders__user">\n        <span class="emoji leaders__emoji"></span>\n        <img class="userpic leaders__userpic" src="" alt="">\n        <p class="leaders__name"></p>\n        <p class="leaders__number caption pale"></p>\n      </div>\n      <div class="leaders__column"></div>\n  ',setImage(a,"leaders__userpic",e.id,e.avatar,e.name),a.querySelector(".leaders__name").innerHTML=e.name.split(" ").join("<br>"),a.querySelector(".leaders__number").innerHTML=e.valueText,a.querySelector(".leaders__column").innerHTML=t,a},renderLeaders=function(e){var t=document.createElement("div"),a=3;window.innerWidth>480&&window.innerWidth<1024?a=e.users.length<5?e.users.length:5:window.innerWidth>1023&&window.innerWidth<1920?a=e.users.length<7?e.users.length:7:window.innerWidth>1919&&(a=e.users.length<9?e.users.length:9);for(var r=0;r<a;r++){var n=setLeader(e.users[r],"".concat(r+1));e.selectedUserId&&e.selectedUserId===e.users[r].id&&(n.querySelector(".leaders__emoji").innerHTML="👍"),0===r?(n.querySelector(".leaders__emoji").innerHTML+="".concat(e.emoji),n.querySelector(".leaders__column").classList.add("leaders__column_bright"),t.appendChild(n)):(n.classList.add("leaders__unit_top".concat(r+1)),r%2==1?(n.classList.add("leaders__unit_right"),t.appendChild(n)):(n.classList.add("leaders__unit_left"),t.prepend(n)))}if(e.selectedUserId){var i=e.users.findIndex((function(t){return t.id===e.selectedUserId}));if(i>a&&window.innerWidth<481){var s=document.createElement("div");s.className="leaders__user leaders__user_chosen",s.innerHTML='\n        <span class="emoji leaders__emoji">👍</span>\n        <img class="userpic leaders__userpic" src="" alt="">\n        <p class="leaders__name">'.concat(e.users[i].name,'</p>\n        <p class="leaders__number caption">').concat(e.users[i].valueText,'</p>\n        <p class="leaders__position">').concat(i+1,"</p>\n      "),setImage(s,"leaders__userpic",e.users[i].id,e.users[i].avatar,e.users[i].name),t.appendChild(s)}}return t.innerHTML},renderVote=function(e){var t=document.createElement("div");t.innerHTML='\n    <button class="vote__button vote__button_up" id="button-up">\n      <svg>\n        <path fill-rule="evenodd" clip-rule="evenodd" d="M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z" fill=""/>\n      </svg>\n    </button>\n    <button class="vote__button vote__button_down" id="button-down">\n      <svg>\n        <path fill-rule="evenodd" clip-rule="evenodd" d="M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z" fill=""/>\n      </svg>\n    </button>\n  ';var a=0,r=window.innerWidth>480&&window.innerWidth<768?6:8;e.offset?(r=(a=e.users.findIndex((function(t){return t.id===e.offset})))+r,a?(t.querySelector("#button-up").setAttribute("data-action","update"),t.querySelector("#button-up").setAttribute("data-params",JSON.stringify({alias:"vote",data:{offset:e.users[a-1].id}}))):t.querySelector("#button-up").disabled=!0,a+r>=e.users.length?t.querySelector("#button-down").disabled=!0:(t.querySelector("#button-down").setAttribute("data-action","update"),t.querySelector("#button-down").setAttribute("data-params",JSON.stringify({alias:"vote",data:{offset:e.users[r].id}})))):(t.querySelector("#button-up").disabled=!0,r>=e.users.length?t.querySelector("#button-down").disabled=!0:(t.querySelector("#button-down").setAttribute("data-action","update"),t.querySelector("#button-down").setAttribute("data-params",JSON.stringify({alias:"vote",data:{offset:e.users[r].id}}))));for(var n=a;n<r;n++){var i=e.users[n];if(!e.users[n])break;var s=document.createElement("div");if(s.className="card vote__card",s.innerHTML='\n      <img \n        srcset="assets/images/'.concat(i.id,".jpg 1.5x, assets/images/").concat(i.avatar,'" \n        src="assets/images/').concat(i.avatar,'" alt="').concat(i.name,'" \n        class="userpic card__userpic">\n      <p class="card__name">').concat(i.name,"</p>\n    "),e.selectedUserId&&e.selectedUserId===i.id){var d=document.createElement("span");d.classList.add("emoji"),d.classList.add("card__emoji"),d.innerHTML="👍",s.appendChild(d),s.classList.add("card_chosen")}else s.setAttribute("data-action","update"),s.setAttribute("data-params",JSON.stringify({alias:"leaders",data:{selectedUserId:i.id}}));t.appendChild(s)}return t.innerHTML},renderChart=function(e){var t=document.createElement("div");t.innerHTML='\n    <div class="chart__chart"></div>\n    <div class="chart__leaders"></div>\n  ';var a=t.querySelector(".chart__chart"),r=t.querySelector(".chart__leaders"),n=e.values.findIndex((function(e){return e.active})),i=n-6,s=n+2;window.innerWidth>767&&window.innerWidth<1024?i=n-7>0?n-7:0:window.innerWidth>1023&&window.innerWidth<1366?(i=n-8>0?n-8:0,s=n+3<e.values.length?n+3:e.values.length):window.innerWidth>1365&&window.innerWidth<1920?(i=n-12>0?n-12:0,s=n+3<e.values.length?n+3:e.values.length):window.innerWidth>1919&&(i=n-14>0?n-14:0,s=n+3<e.values.length?n+3:e.values.length);for(var d=0,c=i;c<=s;c++)e.values[c].value>d&&(d=e.values[c].value);for(var o=i;o<=s;o++){var l=e.values[o],u=document.createElement("div");u.className="chart__unit",u.innerHTML='\n      <p class="chart__number subtitle pale">'.concat(l.value?l.value:"",'</p>\n      <div class="chart__bar"></div>\n      <p class="chart__legend pale">').concat(l.title,"</p>\n    "),u.style.height=l.value/d*70+"%",o===n&&(u.querySelector(".chart__number").classList.remove("pale"),u.querySelector(".chart__bar").classList.add("chart__bar_current")),a.appendChild(u)}return e.users.forEach((function(t,a){if(!(window.innerWidth<1366&&2===a)){var n=e.users[a],i=document.createElement("div");i.className="chart__leader",i.innerHTML='\n      <img srcset=""\n           src=""\n           alt=""\n           class="userpic userpic_mini chart__userpic">\n      <div class="chart__text">\n        <p class="chart__leader-name">'.concat(n.name,'</p>\n        <p class="caption pale">').concat(n.valueText,"</p>\n      </div>\n    "),setImage(i,"chart__userpic",n.id,n.avatar,n.name),r.appendChild(i)}})),t.innerHTML},renderDiagram=function(e){var t=document.body.classList.contains("theme_light")?"light":"dark",a=document.createElement("div");a.innerHTML='\n      <div class="diagram__donut-wrap">\n        <svg viewBox="0 0 134 134" class="diagram__donut">\n          <defs>\n            <radialGradient id="dark-0">\n              <stop offset="71.88%" stop-color="rgba(255, 163, 0, 0.8)" />\n              <stop offset="100%" stop-color="rgba(91, 58, 0, 0.8)" />\n            </radialGradient>\n            <radialGradient id="dark-1">\n              <stop offset="72.92%" stop-color="rgba(99, 63, 0, 0.5)" />\n              <stop offset="100%" stop-color="rgba(15, 9, 0, 0.5) 100%)" />\n            </radialGradient>\n            <radialGradient id="dark-2">\n              <stop offset="71.88%" stop-color="rgba(155, 155, 155, 0.5)" />\n              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />\n            </radialGradient>\n            <radialGradient id="dark-3">\n              <stop offset="71.88%" stop-color="rgba(77, 77, 77, 0.5)" />\n              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />\n            </radialGradient>\n\n            <radialGradient id="light-0">\n              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.7)" />\n              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.4)" />\n            </radialGradient>\n            <radialGradient id="light-1">\n              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.4)" />\n              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.2)" />\n            </radialGradient>\n            <radialGradient id="light-2">\n              <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.69)" />\n              <stop offset="100%" stop-color="rgba(203, 203, 203, 0.2)" />\n            </radialGradient>\n            <radialGradient id="light-3">\n              <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.69)" />\n              <stop offset="100%" stop-color="rgba(228, 228, 228, 0.2)" />\n            </radialGradient>\n          </defs>\n        </svg>\n        <div class="diagram__number">\n          <p class="diagram__value"></p>\n          <p class="diagram__change-value pale"></p>\n        </div>\n      </div>\n      <ul class="diagram__legend diagram-legend"></ul>\n  ',a.querySelector(".diagram__value").innerHTML=e.totalText.split(" ").join("<br>"),a.querySelector(".diagram__change-value").innerHTML=e.differenceText;var r=[];e.categories.forEach((function(e,t){r.push(Number.parseInt(e.valueText.split(" ")[0]));var n=document.createElement("li");n.className="diagram-legend__line",n.innerHTML='\n      <span class="diagram-legend__color diagram-legend__color_'.concat(t,'"></span>\n      <span class="diagram-legend__category">').concat(e.title,'</span>\n      <span class="diagram-legend__change-value pale">').concat(e.differenceText.split(" ")[0],'</span>\n      <span class="diagram-legend__value pale">').concat(e.valueText.split(" ")[0],"</span>\n    "),a.querySelector(".diagram-legend").appendChild(n)}));var n=r.reduce((function(e,t){return e+t})),i=90+(Math.round(360*r[0]/n)-1)/2,s=a.querySelector(".diagram__donut");return r.forEach((function(e,a){var r=document.createElementNS("http://www.w3.org/2000/svg","circle"),d=Math.round(360*e/n)-1;r.classList.add("diagram__donut-segment"),r.setAttribute("cx","67"),r.setAttribute("cy","67"),r.setAttribute("r","57.29577951"),r.setAttribute("fill","transparent"),r.setAttribute("stroke","url(#".concat(t,"-").concat(a,")")),r.setAttribute("stroke-width","17.2"),r.setAttribute("stroke-dasharray","".concat(d," ").concat(360-d)),r.setAttribute("stroke-dashoffset","".concat(i+1)),s.prepend(r),i-=d+1})),a.innerHTML},setActivityBar=function(e,t,a){var r=document.body.classList.contains("theme_light")?"light":"dark",n=document.createElement("img"),i=Math.ceil(t/a)<3?Math.ceil(t/a):3,s="".concat(["min","mid","max","extra"][i],"-").concat(r);n.srcset="assets/images/".concat(s,"@2x.png 1.5x, assets/images/").concat(s,".png"),n.src="assets/images/".concat(s,".png"),n.alt=t,e.appendChild(n)},renderActivity=function(e){var t=document.createElement("div");t.innerHTML='\n    <div class="activity__grid"></div>\n    <div class="activity__legend activity-legend">\n      <div class="activity-legend__unit">\n        <div class="activity-legend__color activity-legend__color_size"></div>\n        <p class="activity-legend__text pale">1 час</p>\n      </div>\n    </div>\n  ';var a=t.querySelector(".activity__grid"),r=t.querySelector(".activity__legend"),n=window.innerWidth>480&&window.innerWidth<1366,i=e.data,s=[];if(n){for(var d in i){for(var c=[],o=1;o<=i[d].length;o+=2){var l=i[d][o]?i[d][o]+i[d][o-1]:i[d][o-1];c.push(l)}s[d]=c}t.querySelector(".activity-legend__text").innerHTML="2 часа"}var u=0,_=n?s:i;for(var p in _)i[p].forEach((function(e){e>u&&(u=e)}));for(var v=Math.floor(u/3),m=0;m<4;m++){var g="";switch(m){case 0:g="0";break;case 1:g=1===v?"1":"1 — ".concat(m+v-1);break;case 2:if(1===v)g="2";else{var h=Math.floor((m-1)*u/3)+1;g="".concat(h," — ").concat(h+v-1)}break;case 3:var f=Math.floor((m-1)*u/3)+1;u%3==2&&(f=Math.floor((m-1)*u/3)),g="".concat(f," — ").concat(u)}var b=document.createElement("div");b.className="activity-legend__unit",b.innerHTML='\n      <div class="activity-legend__color activity-legend__color_'.concat(m,'"></div>\n      <p class="activity-legend__text pale">').concat(g,"</p>\n    "),r.appendChild(b)}if(window.innerWidth<window.innerHeight){var y=[];for(var w in i)y.push.apply(y,_toConsumableArray(i[w]));for(var L=0;L<i.mon.length;L++){var C=document.createElement("div");C.classList.add("activity__grid-row"),C.id="row-".concat(L),a.appendChild(C)}for(var M=0;M<y.length;M++){var T=document.createElement("div");T.classList.add("activity__grid-cell"),setActivityBar(T,y[M],v),t.querySelector("#row-".concat(Math.floor(M%i.mon.length))).appendChild(T)}}else if(n){var S=[];for(var A in s)S.push(s[A]);for(var q=0;q<7;q++){var H=document.createElement("div");H.classList.add("activity__grid-row"),a.appendChild(H);for(var E=0;E<S[0].length;E++){var I=document.createElement("div");I.classList.add("activity__grid-cell"),setActivityBar(I,S[q][E],v),H.appendChild(I)}}}else{var x=[];for(var k in i)x.push.apply(x,_toConsumableArray(i[k]));for(var W=0;W<7;W++){var j=document.createElement("div");j.classList.add("activity__grid-row"),j.id="row-".concat(W),a.appendChild(j)}for(var G=0;G<x.length;G++){var N=document.createElement("div");N.classList.add("activity__grid-cell"),setActivityBar(N,x[G],v),t.querySelector("#row-".concat(Math.floor(G/i.mon.length))).appendChild(N)}}return t.innerHTML};window.renderTemplate=function(e,t){var a;switch(e){case"leaders":a=renderLeaders;break;case"vote":a=renderVote;break;case"chart":a=renderChart;break;case"diagram":a=renderDiagram;break;case"activity":a=renderActivity}return'\n    <div id="anchor" class="anchor">\n      <h1 class="title title_main" id="main-title">'.concat(t.title,'</h1>\n      <p class="subtitle_main pale" id="subtitle">').concat(t.subtitle,'</p>\n      <div class="container ').concat(e," ").concat(e,"_").concat(mod(e,t),'">').concat(a(t),"</div>\n    </div>\n  ")};
+const mod = (alias, data) => {
+  if (alias !== 'leaders') { return '' }
+
+  if (window.innerWidth < 481 &&
+    data.selectedUserId &&
+    data.users.findIndex(user => user.id === data.selectedUserId)) {
+    return 'with-chosen';
+  }
+}
+
+const setImage = (parent, selectorClass, id, avatar, name) => {
+  const image = parent.querySelector(`.${selectorClass}`);
+
+  image.srcset = `assets/images/${id}.jpg 1.5x, assets/images/${avatar}`;
+  image.src = `assets/images/${avatar}`;
+  image.alt = name;
+}
+
+const setLeader = (userData, place) => {
+  const unit = document.createElement('div');
+  unit.classList.add('leaders__unit');
+  unit.innerHTML = `
+      <div class="leaders__user">
+        <span class="emoji leaders__emoji"></span>
+        <img class="userpic leaders__userpic" src="" alt="">
+        <p class="leaders__name"></p>
+        <p class="leaders__number caption pale"></p>
+      </div>
+      <div class="leaders__column"></div>
+  `;
+  //задаем картиночку
+  setImage(unit, 'leaders__userpic', userData.id, userData.avatar, userData.name);
+
+  //задаем имя, статы и место
+  unit.querySelector('.leaders__name').innerHTML = userData.name.split(' ').join('<br>');
+  unit.querySelector('.leaders__number').innerHTML = userData.valueText;
+  unit.querySelector('.leaders__column').innerHTML = place;
+
+  return unit;
+}
+
+const renderLeaders = (data) => {
+  const container = document.createElement('div');
+  let numLeaders = 3;
+
+  if (window.innerWidth > 480 && window.innerWidth < 1024) {
+    numLeaders = data.users.length < 5 ? data.users.length : 5;
+  } else if (window.innerWidth > 1023 && window.innerWidth < 1920) {
+    numLeaders = data.users.length < 7 ? data.users.length : 7;
+  } else if (window.innerWidth > 1919) {
+    numLeaders = data.users.length < 9 ? data.users.length : 9;
+  }
+
+  for (let i = 0; i < numLeaders; i++) {
+    const leaderCard = setLeader(data.users[i], `${i + 1}`);
+
+    if (data.selectedUserId &&  data.selectedUserId === data.users[i].id) {
+      leaderCard.querySelector('.leaders__emoji').innerHTML = '👍';
+    }
+
+    if (i === 0) {
+      leaderCard.querySelector('.leaders__emoji').innerHTML += `${data.emoji}`;
+      leaderCard.querySelector('.leaders__column').classList.add('leaders__column_bright');
+      container.appendChild(leaderCard);
+    } else {
+      leaderCard.classList.add(`leaders__unit_top${i + 1}`)
+      if ( i % 2 === 1) {
+        leaderCard.classList.add('leaders__unit_right');
+        container.appendChild(leaderCard);
+      } else {
+        leaderCard.classList.add('leaders__unit_left');
+        container.prepend(leaderCard);
+      }
+    }
+  }
+
+  if (data.selectedUserId) {
+    const index = data.users.findIndex(unit => unit.id === data.selectedUserId);
+
+    if (index > numLeaders && window.innerWidth < 481) {
+      const chosenCard = document.createElement('div');
+      chosenCard.className = 'leaders__user leaders__user_chosen';
+      chosenCard.innerHTML = `
+        <span class="emoji leaders__emoji">👍</span>
+        <img class="userpic leaders__userpic" src="" alt="">
+        <p class="leaders__name">${data.users[index].name}</p>
+        <p class="leaders__number caption">${data.users[index].valueText}</p>
+        <p class="leaders__position">${index + 1}</p>
+      `;
+      setImage(chosenCard, 'leaders__userpic', data.users[index].id, data.users[index].avatar, data.users[index].name);
+
+      container.appendChild(chosenCard);
+    }
+  }
+
+  return container.innerHTML;
+}
+
+const renderVote = (data) => {
+  const container = document.createElement('div');
+
+  container.innerHTML = `
+    <button class="vote__button vote__button_up" id="button-up">
+      <svg>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z" fill=""/>
+      </svg>
+    </button>
+    <button class="vote__button vote__button_down" id="button-down">
+      <svg>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z" fill=""/>
+      </svg>
+    </button>
+  `;
+
+  let minNum = 0;
+  let maxNum = window.innerWidth > 480 && window.innerWidth < 768 ? 6 : 8;
+
+  if (data.offset) {
+    minNum = data.users.findIndex(user => user.id === data.offset);
+    maxNum = minNum + maxNum;
+
+    if (minNum) {
+      container.querySelector('#button-up').setAttribute('data-action', 'update');
+      container.querySelector('#button-up').setAttribute(
+        'data-params',
+        JSON.stringify({
+          alias: 'vote',
+          data: {
+            offset: data.users[minNum - 1].id
+          }
+        })
+      );
+    } else {
+      container.querySelector('#button-up').disabled = true;
+    }
+
+    if (minNum + maxNum >= data.users.length) {
+      container.querySelector('#button-down').disabled = true;
+    } else {
+      container.querySelector('#button-down').setAttribute('data-action', 'update');
+      container.querySelector('#button-down').setAttribute(
+        'data-params',
+        JSON.stringify({
+          alias: 'vote',
+          data: {
+            offset: data.users[maxNum].id
+          }
+        })
+      );
+    }
+  } else {
+    container.querySelector('#button-up').disabled = true;
+
+    // edge case: даты может прийти только на один экран
+    if (maxNum >= data.users.length) {
+      container.querySelector('#button-down').disabled = true;
+    } else {
+      container.querySelector('#button-down').setAttribute('data-action', 'update');
+      container.querySelector('#button-down').setAttribute(
+        'data-params',
+        JSON.stringify({
+          alias: 'vote',
+          data: {
+            offset: data.users[maxNum].id
+          }
+        })
+      );
+    }
+  }
+
+  for (let i = minNum; i < maxNum; i++) {
+    const userData = data.users[i];
+    if (!data.users[i]) { break }
+
+    const userCard = document.createElement('div');
+    userCard.className = 'card vote__card';
+    userCard.innerHTML = `
+      <img 
+        srcset="assets/images/${userData.id}.jpg 1.5x, assets/images/${userData.avatar}" 
+        src="assets/images/${userData.avatar}" alt="${userData.name}" 
+        class="userpic card__userpic">
+      <p class="card__name">${userData.name}</p>
+    `;
+
+    if (data.selectedUserId && data.selectedUserId === userData.id) {
+      const emoji = document.createElement('span');
+      emoji.classList.add('emoji');
+      emoji.classList.add('card__emoji');
+      emoji.innerHTML = '👍';
+      userCard.appendChild(emoji);
+      userCard.classList.add('card_chosen');
+    } else {
+      userCard.setAttribute('data-action', 'update');
+      userCard.setAttribute(
+        'data-params',
+        JSON.stringify({
+          alias: 'leaders',
+          data: {
+            selectedUserId: userData.id
+          }
+        })
+      );
+    }
+
+    container.appendChild(userCard);
+  }
+
+  return container.innerHTML;
+}
+
+const renderChart = (data) => {
+  const container = document.createElement('div');
+  container.innerHTML = `
+    <div class="chart__chart"></div>
+    <div class="chart__leaders"></div>
+  `;
+
+  const chart = container.querySelector('.chart__chart');
+  const leaders = container.querySelector('.chart__leaders');
+  const activeIndex = data.values.findIndex(value => value.active);
+  let minIndex = activeIndex - 6;
+  let maxIndex = activeIndex + 2;
+
+  if (window.innerWidth > 767 && window.innerWidth < 1024) {
+    minIndex = activeIndex - 7 > 0 ? activeIndex - 7 : 0;
+  } else if (window.innerWidth > 1023 && window.innerWidth < 1366) {
+    minIndex = activeIndex - 8 > 0 ? activeIndex - 8 : 0;
+    maxIndex = activeIndex + 3 < data.values.length ? activeIndex + 3 : data.values.length;
+  } else if (window.innerWidth > 1365 && window.innerWidth < 1920) {
+    minIndex = activeIndex - 12 > 0 ? activeIndex - 12 : 0;
+    maxIndex = activeIndex + 3 < data.values.length ? activeIndex + 3 : data.values.length;
+  } else if (window.innerWidth > 1919) {
+    minIndex = activeIndex - 14 > 0 ? activeIndex - 14 : 0;
+    maxIndex = activeIndex + 3 < data.values.length ? activeIndex + 3 : data.values.length;
+  }
+
+  let maxValue = 0;
+
+  for (let i = minIndex; i <= maxIndex; i++) {
+    if (data.values[i].value > maxValue) {
+      maxValue = data.values[i].value;
+    }
+  }
+
+  for (let i = minIndex; i <= maxIndex; i++) {
+    const dataUnit = data.values[i];
+    const bar = document.createElement('div');
+    bar.className = 'chart__unit';
+    bar.innerHTML = `
+      <p class="chart__number subtitle pale">${dataUnit.value ? dataUnit.value : ''}</p>
+      <div class="chart__bar"></div>
+      <p class="chart__legend pale">${dataUnit.title}</p>
+    `;
+    bar.style.height = 70 * (dataUnit.value / maxValue) + '%';
+
+    if (i === activeIndex) {
+      bar.querySelector('.chart__number').classList.remove('pale');
+      bar.querySelector('.chart__bar').classList.add('chart__bar_current');
+    }
+
+    chart.appendChild(bar);
+  }
+
+  data.users.forEach((user, index) => {
+    if (window.innerWidth < 1366 && index === 2) { return; }
+
+    const userData = data.users[index];
+    const userCard = document.createElement('div');
+    userCard.className = 'chart__leader';
+    userCard.innerHTML = `
+      <img srcset=""
+           src=""
+           alt=""
+           class="userpic userpic_mini chart__userpic">
+      <div class="chart__text">
+        <p class="chart__leader-name">${userData.name}</p>
+        <p class="caption pale">${userData.valueText}</p>
+      </div>
+    `;
+    setImage(userCard, 'chart__userpic', userData.id, userData.avatar, userData.name);
+
+    leaders.appendChild(userCard);
+  });
+
+  return container.innerHTML;
+}
+
+const renderDiagram = (data) => {
+  const theme = document.body.classList.contains('theme_light') ? 'light' : 'dark';
+
+  const container = document.createElement('div');
+  container.innerHTML = `
+      <div class="diagram__donut-wrap">
+        <svg viewBox="0 0 134 134" class="diagram__donut">
+          <defs>
+            <radialGradient id="dark-0" cx="50%" cy="40%">
+              <stop offset="72%" stop-color="rgba(255, 163, 0, 0.8)" />
+              <stop offset="100%" stop-color="rgba(91, 58, 0, 0.8)" />
+            </radialGradient>
+            <radialGradient id="dark-1" cx="55%" cy="45%">
+              <stop offset="73%" stop-color="rgb(99, 63, 0)" />
+              <stop offset="100%" stop-color="rgb(15, 9, 0) 100%)" />
+            </radialGradient>
+            <radialGradient id="dark-2" cx="52%" cy="52%">
+              <stop offset="72%" stop-color="rgb(155, 155, 155)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
+            </radialGradient>
+            <radialGradient id="dark-3" cx="40%" cy="50%">
+              <stop offset="72%" stop-color="rgb(77, 77, 77)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
+            </radialGradient>
+
+            <radialGradient id="light-0" cx="50%" cy="40%">
+              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.7)" />
+              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.4)" />
+            </radialGradient>
+            <radialGradient id="light-1" cx="55%" cy="45%">
+              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.4)" />
+              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.2)" />
+            </radialGradient>
+            <radialGradient id="light-2" cx="48%" cy="48%">
+              <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.69)" />
+              <stop offset="100%" stop-color="rgba(203, 203, 203, 0.2)" />
+            </radialGradient>
+            <radialGradient id="light-3" cx="40%" cy="50%">
+              <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.69)" />
+              <stop offset="100%" stop-color="rgba(228, 228, 228, 0.2)" />
+            </radialGradient>
+            
+            <filter id="shadow-dark-0">
+<!--              <feColorMatrix-->
+<!--                type = "matrix"-->
+<!--                values="1 0 0 0 0 0 0.64 0 0 0 0 0 0 0 0 0 0 0 0.9 0"/>-->
+              <feDiffuseLighting lighting-color="rgba(255, 162, 0, 0.9)" surfaceScale="2" diffuseConstant="1">
+              <fePointLight x="-30" y="-30" z="230"/>
+              <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="20" />
+<!--              <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />-->
+            </filter>
+          </defs>
+        </svg>
+        <div class="diagram__number">
+          <p class="diagram__value"></p>
+          <p class="diagram__change-value pale"></p>
+        </div>
+      </div>
+      <ul class="diagram__legend diagram-legend"></ul>
+  `;
+
+  container.querySelector('.diagram__value').innerHTML = data.totalText.split(' ').join('<br>');
+  container.querySelector('.diagram__change-value').innerHTML = data.differenceText;
+  let values = [];
+
+  data.categories.forEach((category, index) => {
+    values.push(Number.parseInt(category.valueText.split(' ')[0]));
+
+    const legendItem = document.createElement('li');
+    legendItem.className = 'diagram-legend__line';
+    legendItem.innerHTML = `
+      <span class="diagram-legend__color diagram-legend__color_${index}"></span>
+      <span class="diagram-legend__category">${category.title}</span>
+      <span class="diagram-legend__change-value pale">${category.differenceText.split(' ')[0]}</span>
+      <span class="diagram-legend__value pale">${category.valueText.split(' ')[0]}</span>
+    `;
+
+    container.querySelector('.diagram-legend').appendChild(legendItem);
+  });
+
+  const total = values.reduce((one, two) => one + two);
+  let offset = 90 + (Math.round(360 * values[0] / total) - 1) / 2;
+  const donut = container.querySelector('.diagram__donut');
+  values.forEach((value, index) => {
+    const slice = document.createElementNS('http://www.w3.org/2000/svg', 'circle')
+    const length = Math.round(360 * value / total) - 1;
+    slice.classList.add('diagram__donut-segment');
+    slice.setAttribute('cx', '67');
+    slice.setAttribute('cy', '67');
+    slice.setAttribute('r', '57.29577951');
+    slice.setAttribute('fill', 'transparent');
+    slice.setAttribute('stroke', `url(#${theme}-${index})`);
+    slice.setAttribute('filter', `url(#shadow-${theme}-${index})`);
+    slice.setAttribute('stroke-width', '17.2');
+    slice.setAttribute('stroke-dasharray', `${length} ${360 - length}`);
+    slice.setAttribute('stroke-dashoffset', `${offset + 1}`);
+
+    donut.prepend(slice);
+    // offset = length - offset >= 0 ? length - offset : 360 - length + offset;
+    offset -= (length + 1);
+  });
+
+  return container.innerHTML;
+}
+
+const setActivityBar = (parent, value, step) => {
+  const theme = document.body.classList.contains('theme_light') ? 'light' : 'dark';
+
+  const sources = ['min', 'mid', 'max', 'extra'];
+  const image = document.createElement('img');
+  const index = Math.ceil(value / step) < 3 ? Math.ceil(value / step) : 3;
+  const name = `${sources[index]}-${theme}`;
+  image.srcset = `assets/images/${name}@2x.png 1.5x, assets/images/${name}.png`;
+  image.src = `assets/images/${name}.png`;
+  image.alt = value;
+
+  parent.appendChild(image);
+}
+
+const renderActivity = (data) => {
+  const container = document.createElement('div');
+  container.innerHTML = `
+    <div class="activity__grid"></div>
+    <div class="activity__legend activity-legend">
+      <div class="activity-legend__unit">
+        <div class="activity-legend__color activity-legend__color_size"></div>
+        <p class="activity-legend__text pale">1 час</p>
+      </div>
+    </div>
+  `;
+
+  const heatmap = container.querySelector('.activity__grid');
+  const legend = container.querySelector('.activity__legend');
+  const group = window.innerWidth > 480 && window.innerWidth < 1366;
+  let activityData = data.data;
+  let groupedData = [];
+
+  if (group) {
+    for (const day in activityData) {
+      let grouped = [];
+      for (let i = 1; i <= activityData[day].length; i += 2) {
+        const unit = activityData[day][i] ? activityData[day][i] + activityData[day][i - 1] : activityData[day][i - 1];
+        grouped.push(unit);
+      }
+      groupedData[day] = grouped;
+    }
+    container.querySelector('.activity-legend__text').innerHTML = '2 часа';
+  }
+
+  let maxValue = 0;
+  const dataRef = group ? groupedData : activityData;
+  for (const day in dataRef) {
+    activityData[day].forEach(unit => {
+      if (unit > maxValue) {
+        maxValue = unit;
+      }
+    });
+  }
+
+  const step = Math.floor(maxValue / 3);
+
+  for (let i = 0; i < 4; i++) {
+    let text = '';
+    switch (i) {
+      case 0:
+        text = '0';
+        break;
+      case 1:
+        if (step === 1) {
+          text = '1';
+        } else {
+          text = `1 — ${i + step - 1}`;
+        }
+        break;
+      case 2:
+        if (step === 1) {
+          text = '2';
+        } else {
+          const low = Math.floor((i - 1) * maxValue / 3) + 1;
+          text = `${low} — ${low + step - 1}`;
+        }
+        break;
+      case 3:
+        let low = Math.floor((i - 1) * maxValue / 3) + 1;
+        if (maxValue % 3 === 2) {
+          low = Math.floor((i - 1) * maxValue / 3);
+        }
+        text = `${low} — ${maxValue}`;
+    }
+
+    const legendItem = document.createElement('div');
+    legendItem.className = 'activity-legend__unit';
+    legendItem.innerHTML = `
+      <div class="activity-legend__color activity-legend__color_${i}"></div>
+      <p class="activity-legend__text pale">${text}</p>
+    `;
+    legend.appendChild(legendItem);
+  }
+
+  if (window.innerWidth < window.innerHeight) {
+    const array = [];
+
+    for (const day in activityData) {
+      array.push(...activityData[day]);
+    }
+
+    for (let i = 0; i < activityData['mon'].length; i++) {
+      const row = document.createElement('div');
+      row.classList.add('activity__grid-row');
+      row.id = `row-${i}`;
+      heatmap.appendChild(row);
+    }
+
+    for (let j = 0; j < array.length; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('activity__grid-cell');
+      setActivityBar(cell, array[j], step);
+
+      const row = container.querySelector(`#row-${Math.floor(j % activityData['mon'].length)}`);
+      row.appendChild(cell);
+    }
+  } else if (group) {
+    const array = [];
+
+    for (const day in groupedData) {
+      array.push(groupedData[day]);
+    }
+
+    for (let i = 0; i < 7; i++) {
+      const row = document.createElement('div');
+      row.classList.add('activity__grid-row');
+      heatmap.appendChild(row);
+
+      for (let j = 0; j < array[0].length; j++) {
+        const cell = document.createElement('div');
+        cell.classList.add('activity__grid-cell');
+        setActivityBar(cell, array[i][j], step);
+        row.appendChild(cell);
+      }
+    }
+  } else {
+    const array = [];
+
+    for (const day in activityData) {
+      array.push(...activityData[day]);
+    }
+
+    for (let i = 0; i < 7; i++) {
+      const row = document.createElement('div');
+      row.classList.add('activity__grid-row');
+      row.id = `row-${i}`;
+      heatmap.appendChild(row);
+    }
+
+    for (let j = 0; j < array.length; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('activity__grid-cell');
+      setActivityBar(cell, array[j], step);
+
+      const row = container.querySelector(`#row-${Math.floor(j / activityData['mon'].length)}`);
+      row.appendChild(cell);
+    }
+  }
+
+  return container.innerHTML;
+}
+
+window.renderTemplate = (alias, data) => {
+  let renderFunction;
+
+  switch (alias) {
+    case 'leaders':
+      renderFunction = renderLeaders;
+      break;
+    case 'vote':
+      renderFunction = renderVote;
+      break;
+    case 'chart':
+      renderFunction = renderChart;
+      break;
+    case 'diagram':
+      renderFunction = renderDiagram;
+      break;
+    case 'activity':
+      renderFunction = renderActivity;
+      break;
+  }
+
+  return `
+    <div id="anchor" class="anchor">
+      <h1 class="title title_main" id="main-title">${data.title}</h1>
+      <p class="subtitle_main pale" id="subtitle">${data.subtitle}</p>
+      <div class="container ${alias} ${alias}_${mod(alias, data)}">${renderFunction(data)}</div>
+    </div>
+  `;
+}

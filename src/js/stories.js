@@ -293,39 +293,49 @@ const renderDiagram = (data) => {
       <div class="diagram__donut-wrap">
         <svg viewBox="0 0 134 134" class="diagram__donut">
           <defs>
-            <radialGradient id="dark-0">
-              <stop offset="71.88%" stop-color="rgba(255, 163, 0, 0.8)" />
+            <radialGradient id="dark-0" cx="50%" cy="40%">
+              <stop offset="72%" stop-color="rgba(255, 163, 0, 0.8)" />
               <stop offset="100%" stop-color="rgba(91, 58, 0, 0.8)" />
             </radialGradient>
-            <radialGradient id="dark-1">
-              <stop offset="72.92%" stop-color="rgba(99, 63, 0, 0.5)" />
-              <stop offset="100%" stop-color="rgba(15, 9, 0, 0.5) 100%)" />
+            <radialGradient id="dark-1" cx="55%" cy="45%">
+              <stop offset="73%" stop-color="rgb(99, 63, 0)" />
+              <stop offset="100%" stop-color="rgb(15, 9, 0) 100%)" />
             </radialGradient>
-            <radialGradient id="dark-2">
-              <stop offset="71.88%" stop-color="rgba(155, 155, 155, 0.5)" />
-              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />
+            <radialGradient id="dark-2" cx="52%" cy="52%">
+              <stop offset="72%" stop-color="rgb(155, 155, 155)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
             </radialGradient>
-            <radialGradient id="dark-3">
-              <stop offset="71.88%" stop-color="rgba(77, 77, 77, 0.5)" />
-              <stop offset="100%" stop-color="rgba(56, 41, 0, 0.5)" />
+            <radialGradient id="dark-3" cx="40%" cy="50%">
+              <stop offset="72%" stop-color="rgb(77, 77, 77)" />
+              <stop offset="100%" stop-color="rgb(56, 41, 0)" />
             </radialGradient>
 
-            <radialGradient id="light-0">
+            <radialGradient id="light-0" cx="50%" cy="40%">
               <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.7)" />
               <stop offset="100%" stop-color="rgba(255, 239, 153, 0.4)" />
             </radialGradient>
-            <radialGradient id="light-1">
+            <radialGradient id="light-1" cx="55%" cy="45%">
               <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.4)" />
               <stop offset="100%" stop-color="rgba(255, 239, 153, 0.2)" />
             </radialGradient>
-            <radialGradient id="light-2">
+            <radialGradient id="light-2" cx="48%" cy="48%">
               <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.69)" />
               <stop offset="100%" stop-color="rgba(203, 203, 203, 0.2)" />
             </radialGradient>
-            <radialGradient id="light-3">
+            <radialGradient id="light-3" cx="40%" cy="50%">
               <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.69)" />
               <stop offset="100%" stop-color="rgba(228, 228, 228, 0.2)" />
             </radialGradient>
+            
+            <filter id="shadow-dark-0">
+<!--              <feColorMatrix-->
+<!--                type = "matrix"-->
+<!--                values="1 0 0 0 0 0 0.64 0 0 0 0 0 0 0 0 0 0 0 0.9 0"/>-->
+              <feDiffuseLighting lighting-color="rgba(255, 162, 0, 0.9)" surfaceScale="2" diffuseConstant="1">
+              <fePointLight x="-30" y="-30" z="230"/>
+              <feGaussianBlur result="blurOut" in="SourceGraphic" stdDeviation="20" />
+<!--              <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />-->
+            </filter>
           </defs>
         </svg>
         <div class="diagram__number">
@@ -367,6 +377,7 @@ const renderDiagram = (data) => {
     slice.setAttribute('r', '57.29577951');
     slice.setAttribute('fill', 'transparent');
     slice.setAttribute('stroke', `url(#${theme}-${index})`);
+    slice.setAttribute('filter', `url(#shadow-${theme}-${index})`);
     slice.setAttribute('stroke-width', '17.2');
     slice.setAttribute('stroke-dasharray', `${length} ${360 - length}`);
     slice.setAttribute('stroke-dashoffset', `${offset + 1}`);
