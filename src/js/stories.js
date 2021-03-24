@@ -346,20 +346,20 @@ const renderDiagram = (data) => {
             </radialGradient>
 
             <radialGradient id="light-0" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
-              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.7)" />
-              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.4)" />
+              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.52)" />
+              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.32)" />
             </radialGradient>
             <radialGradient id="light-1" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
-              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.4)" />
-              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.2)" />
+              <stop offset="81.25%" stop-color="rgba(255, 184, 0, 0.24)" />
+              <stop offset="100%" stop-color="rgba(255, 239, 153, 0.12)" />
             </radialGradient>
             <radialGradient id="light-2" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
-              <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.69)" />
-              <stop offset="100%" stop-color="rgba(203, 203, 203, 0.2)" />
+              <stop offset="82.81%" stop-color="rgba(166, 166, 166, 0.1725)" />
+              <stop offset="100%" stop-color="rgba(203, 203, 203, 0.05)" />
             </radialGradient>
             <radialGradient id="light-3" fx="50%" fy=50% gradientUnits="userSpaceOnUse">
-              <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.69)" />
-              <stop offset="100%" stop-color="rgba(228, 228, 228, 0.2)" />
+              <stop offset="82.81%" stop-color="rgba(191, 191, 191, 0.345" />
+              <stop offset="100%" stop-color="rgba(228, 228, 228, 0.1)" />
             </radialGradient>
             
             <filter id="shadow-dark-0" primitiveUnits="objectBoundingBox" x="0%" y="0%">
@@ -399,21 +399,21 @@ const renderDiagram = (data) => {
              <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
             </filter>
             <filter id="shadow-light-1" primitiveUnits="objectBoundingBox" x="0%" y="0%">
-              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+              <feGaussianBlur stdDeviation="0.7" result="offset-blur" />
              <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
              <feFlood flood-color="rgb(255, 176, 57)" flood-opacity="0.4" result="color" />
              <feComposite operator="in" in="color" in2="inverse" result="shadow" />
              <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
             </filter>
             <filter id="shadow-light-2" primitiveUnits="objectBoundingBox" x="0%" y="0%">
-              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+              <feGaussianBlur stdDeviation="2" result="offset-blur" />
              <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
-             <feFlood flood-color="rgb(105, 105, 105)" flood-opacity="0.2" result="color" />
+             <feFlood flood-color="rgb(105, 105, 105)" flood-opacity="0.3" result="color" />
              <feComposite operator="in" in="color" in2="inverse" result="shadow" />
              <feComposite operator="over" in="shadow" in2="SourceGraphic" /> 
             </filter>
             <filter id="shadow-light-3" primitiveUnits="objectBoundingBox" x="0%" y="0%">
-              <feGaussianBlur stdDeviation="0.12" result="offset-blur" />
+              <feGaussianBlur stdDeviation="0.3" result="offset-blur" />
              <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
              <feFlood flood-color="rgb(131, 131, 131)" flood-opacity="0.6" result="color" />
              <feComposite operator="in" in="color" in2="inverse" result="shadow" />
@@ -454,7 +454,7 @@ const renderDiagram = (data) => {
   let offset = 0;
   values.forEach((value, index) => {
     const slice = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-    slice.classList.add('diagram__donut-segment');
+    // slice.classList.add('diagram__donut-segment');
     slice.setAttribute('r', '1');
     slice.setAttribute('fill', `url(#${theme}-${index})`);
     slice.setAttribute('filter', `url(#shadow-${theme}-${index})`);
