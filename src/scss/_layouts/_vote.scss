@@ -128,9 +128,9 @@
 
     //во имя пиксель-перфекта
     @include maxScreen(480px) {
-      &:nth-of-type(2) {
-        top: -1px;
-      }
+      //&:nth-of-type(2) {
+      //  top: -1px;
+      //}
 
       &:nth-of-type(5) {
         top: -2px;
