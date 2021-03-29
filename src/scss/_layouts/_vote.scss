@@ -58,6 +58,7 @@
       height: 64px;
       fill: var(--active-button);
       transition: fill .3s ease-out;
+      pointer-events: none;
 
       @include maxScreen(360px) {
         width: 45px;

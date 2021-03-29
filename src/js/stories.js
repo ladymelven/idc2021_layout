@@ -120,13 +120,14 @@ const renderVote = (data) => {
     maxNum = minNum + maxNum;
 
     if (minNum) {
+      const offsetIndex = minNum - maxNum > 0 ? minNum - maxNum : 0;
       container.querySelector('#button-up').setAttribute('data-action', 'update');
       container.querySelector('#button-up').setAttribute(
         'data-params',
         JSON.stringify({
           alias: 'vote',
           data: {
-            offset: data.users[minNum - 1].id
+            offset: data.users[offsetIndex].id
           }
         })
       );
